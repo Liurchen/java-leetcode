@@ -1,5 +1,7 @@
 package com.java.leetcode;
 
+import java.util.*;
+
 public class LTC_Tag_Stack {
 
     public String simplifyPath(String path) {
@@ -62,6 +64,39 @@ public class LTC_Tag_Stack {
         }
 //        stack.printStack();
         return Integer.parseInt(stack.pop());
+    }
+
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        Stack<Integer> stack = new Stack<Integer>();
+        HashMap<Integer, Integer> hasMap = new HashMap<Integer, Integer>();
+
+        int[] result = new int[nums1.length];
+
+        for (int num : nums2) {
+            while (!stack.isEmpty() && stack.peek() < num) {
+                hasMap.put(stack.pop(), num);
+            }
+            stack.push(num);
+        }
+
+        for (int i = 0; i < nums1.length; i++) result[i] = hasMap.getOrDefault(nums1[i], -1);
+
+        return result;
+    }
+
+    public boolean isValidSerialization(String preorder) {
+        String[] str = preorder.split(",");
+        int count = 1;
+        for (int i = 0; i < str.length; i++) {
+            if (count == 0) return false;
+            if (str[i].equals("#"))
+                count--;
+            else if (i != str.length - 1) {
+                count++;
+            }
+        }
+        System.out.println(count);
+        return count == 0;
     }
 
 }
