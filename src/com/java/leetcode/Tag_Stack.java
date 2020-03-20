@@ -2,14 +2,14 @@ package com.java.leetcode;
 
 import java.util.*;
 
-public class LTC_Tag_Stack {
+public class Tag_Stack {
 
     public String simplifyPath(String path) {
         if (path.equals("/") || path.equals("")) {
             return "/";
         }
         String[] paths = path.trim().split("/");
-        MiniStacks<String> stack = new MiniStacks<>();
+        Stack<String> stack = new Stack<>();
         for (String str : paths) {
             if (str.equals("..")) {
                 //出栈
@@ -25,7 +25,7 @@ public class LTC_Tag_Stack {
         StringBuilder res = new StringBuilder();
         for (int i = stack.size() - 1; i >= 0; i--) {
             res.append("/");
-            res.append(stack.getElem(i));
+            res.append(stack.pop());
         }
         return res.toString();
     }
@@ -37,12 +37,12 @@ public class LTC_Tag_Stack {
         if (tokens.length == 0) {
             return 0;
         }
-        MiniStacks<String> stack = new MiniStacks<>();
+        Stack<String> stack = new Stack<>();
         for (String s : tokens) {
             if (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/")) {
                 Integer a = Integer.parseInt(stack.pop());
                 Integer b = Integer.parseInt(stack.pop());
-                Integer c = 0;
+                int c = 0;
                 switch (s) {
                     case "+":
                         c = a + b;
@@ -57,7 +57,7 @@ public class LTC_Tag_Stack {
                         c = b / a;
                         break;
                 }
-                stack.push(c.toString());
+                stack.push(Integer.toString(c));
             } else {
                 stack.push(s);
             }
