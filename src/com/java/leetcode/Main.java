@@ -13,10 +13,11 @@ public class Main {
         Tag_LinkedList l = new Tag_LinkedList();
         Tag_Queue q = new Tag_Queue();
         Tag_Stack s = new Tag_Stack();
+        Tag_Greedy g = new Tag_Greedy();
 
-        char[] tasks = new char[]{'A', 'A', 'A', 'B', 'B', 'B'};
+        char[] tasks = new char[]{'A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'C', 'C'};
         int n = 2;
-        q.leastInterval(tasks, n);
+        g.leastInterval(tasks, n);
     }
 }
 
