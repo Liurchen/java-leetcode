@@ -15,8 +15,6 @@ public class Main {
         Tag_Stack s = new Tag_Stack();
         Tag_Greedy g = new Tag_Greedy();
 
-        int[] arr = new int[]{1, 2, 5, 9, 5, 9, 5, 5, 5};
-        a.majorityElement(arr);
     }
 }
 

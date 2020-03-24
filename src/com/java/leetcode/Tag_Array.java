@@ -161,6 +161,29 @@ public class Tag_Array {
     }
 
     public int majorityElement(int[] nums) {
-        return 0;
+        int m = 0, i = 0;
+        for (int num : nums) {
+            if (i == 0) {
+                m = num;
+                i++;
+            } else if (m == num) {
+                i++;
+            } else {
+                i--;
+            }
+        }
+        if (i == 0) {
+            return -1;
+        }
+        return m;
+    }
+
+    public int missingNumber(int[] nums) {
+        int sum = nums.length * (1 + nums.length) / 2;
+        int sum1 = 0;
+        for (int num : nums) {
+            sum1 += num;
+        }
+        return sum - sum1;
     }
 }
