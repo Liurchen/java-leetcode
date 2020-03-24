@@ -15,9 +15,8 @@ public class Main {
         Tag_Stack s = new Tag_Stack();
         Tag_Greedy g = new Tag_Greedy();
 
-        char[] tasks = new char[]{'A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'C', 'C'};
-        int n = 2;
-        g.leastInterval(tasks, n);
+        int[] arr = new int[]{1, 2, 5, 9, 5, 9, 5, 5, 5};
+        a.majorityElement(arr);
     }
 }
 
