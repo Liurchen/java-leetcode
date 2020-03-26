@@ -14,7 +14,10 @@ public class Main {
         Tag_Queue q = new Tag_Queue();
         Tag_Stack s = new Tag_Stack();
         Tag_Greedy g = new Tag_Greedy();
+        Tag_String str = new Tag_String();
 
+        int[] arr = new int[]{0, 0, 1, 2};
+        a.dominantIndex(arr);
     }
 }
 

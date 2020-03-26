@@ -1,6 +1,8 @@
 package com.java.leetcode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Tag_Array {
 
@@ -186,4 +188,181 @@ public class Tag_Array {
         }
         return sum - sum1;
     }
+
+    public int[][] imageSmoother(int[][] M) {
+        if (M.length == 0) return null;
+        if (M[0].length == 0) return null;
+        int[][] res = new int[M.length][M[0].length];
+        for (int i = 0; i < M.length; i++) {
+            int row = M.length;
+            int col = M[i].length;
+            for (int j = 0; j < M[i].length; j++) {
+//                System.out.println(M[i][j]);
+                int sum = M[i][j];
+                int div = 1;
+                if (i - 1 >= 0 && j - 1 >= 0) {
+                    sum += M[i - 1][j - 1];
+                    div++;
+                }
+                if (i - 1 >= 0) {
+                    sum += M[i - 1][j];
+                    div++;
+                }
+                if (i - 1 >= 0 && j + 1 < col) {
+                    sum += M[i - 1][j + 1];
+                    div++;
+                }
+                if (j - 1 >= 0) {
+                    sum += M[i][j - 1];
+                    div++;
+                }
+                if (j + 1 < col) {
+                    sum += M[i][j + 1];
+                    div++;
+                }
+                if (i + 1 < row && j - 1 >= 0) {
+                    sum += M[i + 1][j - 1];
+                    div++;
+                }
+                if (i + 1 < row) {
+                    sum += M[i + 1][j];
+                    div++;
+                }
+                if (i + 1 < row && j + 1 < col) {
+                    sum += M[i + 1][j + 1];
+                    div++;
+                }
+                int ave = sum / div;
+                res[i][j] = ave;
+            }
+        }
+        return res;
+    }
+
+    public boolean checkPossibility(int[] nums) {
+        int numsSize = nums.length;
+        // 数组个数小于2个 一定可以
+        if (numsSize < 3) {
+            return true;
+        }
+
+        // 思路如下：
+        // 如果出现 a[i] > a[i+1]   改变一个数 就面临两种选择
+        // 1. 把a[i]变大
+        // 2. 把a[i+1] 变小
+        // 这两种选择其实是有依据的 需要比较a[i-1] 与 a[i+1]的值
+        // eg.  ... 1 4 3 ...   只能选择把4变小   ... 3 4 1 ... 只能选择把1变大
+        // 改变完之后，记录改变次数，再检测是否升序
+        // 如果次数大于1，至少改了两次 返回false
+
+        // 先让前两个有序
+        // 因为没有左边没有数 所以对于前两个数来说，最佳选择就是吧 a[0] 变小
+        int changeCount = 0;
+        if (nums[0] > nums[1]) {
+            nums[0] = nums[1];
+            changeCount++;
+        }
+
+        for (int i = 1; i < numsSize - 1; i++) {
+            int right = nums[i + 1];
+            if (nums[i] > right) {
+                changeCount++;
+                if (changeCount > 1) {
+                    // 后面不用再看了
+                    return false;
+                }
+                int left = nums[i - 1];
+                if (left > right) {
+                    nums[i + 1] = nums[i];
+                } else {
+                    nums[i] = left;
+                }
+            }
+        }
+        return true;
+    }
+
+    public int findLengthOfLCIS(int[] nums) {
+        if (nums.length == 0) return 0;
+        if (nums.length == 1) return 1;
+        if (nums.length == 2) {
+            if (nums[0] < nums[1]) {
+                return 2;
+            } else {
+                return 1;
+            }
+        }
+        List<Integer> counts = new ArrayList<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int tmp = 1;
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] > nums[j - 1]) {
+                    tmp++;
+                } else {
+                    break;
+                }
+            }
+            counts.add(tmp);
+        }
+
+        int max = counts.get(0);
+        for (int n : counts) {
+            if (n > max) {
+                max = n;
+            }
+            System.out.println(n);
+        }
+
+        return max;
+    }
+
+    public boolean isOneBitCharacter(int[] bits) {
+        int head = 0;
+        while (head < bits.length - 1) {
+            if (bits[head] == 1) {
+                head += 2;
+            } else {
+                head++;
+            }
+        }
+        if (head > bits.length - 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public int pivotIndex(int[] nums) {
+        // leftSum*2 = sum - nums[i]
+        int sum = 0;
+        int leftSum = 0;
+        for (int num : nums) sum += num;
+        for (int i = 0; i < nums.length; i++) {
+            if (leftSum * 2 == sum - nums[i]) {
+                return i;
+            } else {
+                leftSum += nums[i];
+            }
+        }
+        return -1;
+    }
+
+    public int dominantIndex(int[] nums) {
+        if (nums.length == 0) return -1;
+        if (nums.length == 1) return 0;
+        int max = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > nums[max]) {
+                max = i;
+            }
+        }
+        Arrays.sort(nums);
+        if (nums[nums.length - 1] >= 2 * nums[nums.length - 2]) {
+            return max;
+        } else {
+            return -1;
+        }
+    }
+
 }
