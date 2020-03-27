@@ -15,9 +15,10 @@ public class Main {
         Tag_Stack s = new Tag_Stack();
         Tag_Greedy g = new Tag_Greedy();
         Tag_String str = new Tag_String();
+        Tag_Math m = new Tag_Math();
 
-        int[] arr = new int[]{0, 0, 1, 2};
-        a.dominantIndex(arr);
+        int n = 5;
+        System.out.println(m.arrangeCoins(n));
     }
 }
 
