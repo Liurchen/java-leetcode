@@ -9,16 +9,19 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Main {
 
     public static void main(String[] args) {
-        Tag_Array a = new Tag_Array();
-        Tag_LinkedList l = new Tag_LinkedList();
-        Tag_Queue q = new Tag_Queue();
-        Tag_Stack s = new Tag_Stack();
-        Tag_Greedy g = new Tag_Greedy();
-        Tag_String str = new Tag_String();
-        Tag_Math m = new Tag_Math();
 
-        int n = 5;
-        System.out.println(m.arrangeCoins(n));
+        Tag_Array array = new Tag_Array();
+        Tag_LinkedList linkedList = new Tag_LinkedList();
+        Tag_Queue queue = new Tag_Queue();
+        Tag_Stack stack = new Tag_Stack();
+        Tag_Greedy greedy = new Tag_Greedy();
+        Tag_String str = new Tag_String();
+        Tag_Math math = new Tag_Math();
+        Tag_DP dp = new Tag_DP();
+
+        int[] cost = new int[]{10, 15, 20};
+        dp.minCostClimbingStairs(cost);
+
     }
 }
 
