@@ -326,11 +326,7 @@ public class Tag_Array {
                 head++;
             }
         }
-        if (head > bits.length - 1) {
-            return false;
-        } else {
-            return true;
-        }
+        return head <= bits.length - 1;
     }
 
     public int pivotIndex(int[] nums) {
@@ -365,7 +361,7 @@ public class Tag_Array {
         }
     }
 
-    public boolean isToeplitzMatrix(int[][] matrix) {
+    public boolean isToMatrix(int[][] matrix) {
         if (matrix.length == 1) return true;
         for (int i = 0; i < matrix.length - 1; i++) {
             for (int j = 0; j < matrix[i].length - 1; j++) {

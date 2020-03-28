@@ -1,6 +1,7 @@
 package com.java.leetcode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -63,5 +64,47 @@ public class Tag_Greedy {
 
         System.out.println(totalTime);
         return totalTime;
+    }
+
+    // id 392
+    public boolean isSubsequence(String s, String t) {
+        if (s.length() == 0) return true;
+        int idx = 0;
+        for (int i = 0; i < s.length(); i++) {
+            while (idx < t.length()) {
+                if (t.charAt(idx) == s.charAt(i)) {
+                    System.out.printf("idx is %d, t is %c   ", idx, t.charAt(idx));
+                    System.out.printf("i is %d, s is %c\n", i, s.charAt(i));
+                    if (i == s.length() - 1) {
+                        return true;
+                    }
+                    idx++;
+                    break;
+                }
+                idx++;
+            }
+        }
+        return false;
+    }
+
+    // id 455
+    // TBD
+    public int findContentChildren(int[] g, int[] s) {
+        if (s.length == 0) return 0;
+        if (g.length == 0) return 0;
+        Arrays.sort(g);
+        int sum = 0;
+        int idx = 0;
+        for (int num : s) {
+            if (idx == g.length) {
+                return idx;
+            }
+            if (num < g[idx]) {
+                return idx;
+            } else {
+                idx++;
+            }
+        }
+        return idx;
     }
 }

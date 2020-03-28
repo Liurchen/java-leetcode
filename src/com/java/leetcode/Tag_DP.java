@@ -71,8 +71,17 @@ public class Tag_DP {
 
     // id 面试题 17.16
     public int massage(int[] nums) {
-        
-        return 0;
+        if (nums.length == 0) return 0;
+        if (nums.length == 1) return nums[0];
+        if (nums.length == 2) return Math.max(nums[0], nums[1]);
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < nums.length; i++) {
+            dp[i] = Math.max(nums[i] + dp[i - 2], dp[i - 1]);
+        }
+
+        return dp[nums.length - 1];
     }
 
     // id 面试题 08.01
@@ -87,6 +96,26 @@ public class Tag_DP {
         }
 
         return (int) dp[dp.length - 1];
+    }
+
+    // id 62
+    public int uniquePaths(int m, int n) {
+        // 二维dp
+        // dp[i][j]代表到达(i,j)所有路径的数目
+        int[][] dp = new int[m][n];
+        //状态转移方程 到达(i,j)有两种办法，一种是从(i-1,j)向右一步，一种是从(i,j-1)向下一步
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (i == 0 || j == 0) {
+                    dp[i][j] = 1;
+                } else {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                }
+            }
+        }
+
+        return dp[m - 1][n - 1];
     }
 
 }
