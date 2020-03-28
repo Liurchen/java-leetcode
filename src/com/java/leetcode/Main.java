@@ -19,9 +19,11 @@ public class Main {
         Tag_Math math = new Tag_Math();
         Tag_DP dp = new Tag_DP();
 
-        int[] cost = new int[]{10, 15, 20};
-        dp.minCostClimbingStairs(cost);
+//        int[] arr = new int[]{2, 7, 9, 3, 1};
+//        dp.massage(arr);
 
+        int n = 61;
+        System.out.println(dp.waysToStep(n));
     }
 }
 
