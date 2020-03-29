@@ -399,4 +399,46 @@ public class Tag_Array {
         return res;
     }
 
+    // id 75
+    public void sortColors(int[] nums) {
+        int p1 = 0;
+        int p2 = 1;
+        while (p1 < nums.length) {
+            if (p2 == nums.length) {
+                p1++;
+                p2 = p1;
+            }
+            if (p1 == nums.length) {
+                break;
+            }
+            if (nums[p1] > nums[p2]) {
+                int tmp = nums[p1];
+                nums[p1] = nums[p2];
+                nums[p2] = tmp;
+            } else {
+                p2++;
+            }
+        }
+    }
+
+    // id 56
+    public int[][] merge(int[][] intervals) {
+        if (intervals.length == 0) return new int[][]{};
+        Arrays.sort(intervals, (o1, o2) -> o1[0] - o2[0]);
+
+        int[][] res = new int[intervals.length][2];
+        res[0] = intervals[0];
+        int j = 0;
+
+        for (int i = 1; i < intervals.length; i++) {
+            if (res[j][1] >= intervals[i][0]) {
+                res[j][1] = Math.max(res[j][1], intervals[i][1]);
+            } else {
+                res[++j] = intervals[i];
+            }
+        }
+
+        return Arrays.copyOf(res, j + 1);
+    }
+
 }

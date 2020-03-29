@@ -157,7 +157,16 @@ public class Tag_LinkedList {
 
     // id 876
     public ListNode middleNode(ListNode head) {
-        
-        return new ListNode(2);
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast.next != null) {
+            if (fast.next.next != null) {
+                fast = fast.next.next;
+            } else {
+                fast = fast.next;
+            }
+            slow = slow.next;
+        }
+        return slow;
     }
 }

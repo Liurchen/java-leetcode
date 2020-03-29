@@ -108,5 +108,20 @@ public class Tag_Greedy {
         return idx;
     }
 
-
+    // id 55
+    public boolean canJump(int[] nums) {
+        if (nums.length <= 1) return true;
+        if (nums.length == 2) return nums[0] != 0;
+        // idea 倒着走
+        int i = nums.length - 1;
+        int p = nums.length - 2;
+        while (i > 0) {
+            if (p < 0) return false;
+            if (nums[p] >= i - p) {
+                i = p;
+            }
+            p--;
+        }
+        return true;
+    }
 }
