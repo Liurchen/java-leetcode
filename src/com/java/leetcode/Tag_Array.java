@@ -374,4 +374,29 @@ public class Tag_Array {
         return true;
     }
 
+    // id 830
+    public List<List<Integer>> largeGroupPositions(String S) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (S.length() <= 2) return res;
+        // 防止数组越界的小技巧
+        // 防御性编程
+        // 首尾加一个元素
+        S = "0" + S + "0";
+        int start = 0;
+        while (start < S.length()) {
+            int end = start + 1;
+            if (end >= S.length()) break;
+            while (S.charAt(end) == S.charAt(start)) {
+                end++;
+            }
+            int len = end - start;
+            if (end - start >= 3) {
+                List<Integer> tmp = new ArrayList<>(Arrays.asList(start - 1, end - 2));
+                res.add(tmp);
+            }
+            start = end;
+        }
+        return res;
+    }
+
 }

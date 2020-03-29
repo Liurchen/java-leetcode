@@ -43,4 +43,21 @@ public class Tag_Math {
         }
         return num == 0;
     }
+
+    // id 633
+    public boolean judgeSquareSum(int c) {
+        //这里强制类型转换，做一个截断
+        int i = 0, j = (int)Math.sqrt(c);
+        while(i <= j){
+            int sum = i * i + j * j;
+            if(sum < c){
+                i++;
+            }else if(sum > c){
+                j--;
+            }else{
+                return true;
+            }
+        }
+        return false;
+    }
 }

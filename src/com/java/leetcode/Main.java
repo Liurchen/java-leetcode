@@ -18,10 +18,10 @@ public class Main {
         Tag_String str = new Tag_String();
         Tag_Math math = new Tag_Math();
         Tag_DP dp = new Tag_DP();
+        Tag_Bitwise bit = new Tag_Bitwise();
 
-        int[] g = new int[]{1, 2, 3};
-        int[] s = new int[]{1, 2};
-        greedy.findContentChildren(g, s);
+        int[] arr = new int[]{2, 2, 3, 2};
+        bit.singleNumber(arr);
     }
 }
 

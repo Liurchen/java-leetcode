@@ -143,4 +143,21 @@ public class Tag_LinkedList {
         }
         return newHead.next;
     }
+
+    // id 237
+    public void deleteNode(ListNode node) {
+        ListNode p = node;
+        while (node.next != null) {
+            p = node;
+            node.val = node.next.val;
+            node = node.next;
+        }
+        p.next = null;
+    }
+
+    // id 876
+    public ListNode middleNode(ListNode head) {
+        
+        return new ListNode(2);
+    }
 }

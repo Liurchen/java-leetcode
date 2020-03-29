@@ -118,4 +118,33 @@ public class Tag_DP {
         return dp[m - 1][n - 1];
     }
 
+    // id 64
+    public int minPathSum(int[][] grid) {
+        int row = grid.length;
+        int col = grid[0].length;
+        if (col == 0) return 0;
+        int[][] dp = new int[row][col];
+
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                if (i == 0) {
+                    if (j < 1) {
+                        dp[i][j] = grid[i][j];
+                    } else {
+                        dp[i][j] = dp[i][j - 1] + grid[i][j];
+                    }
+                } else if (j == 0) {
+                    if (i < 1) {
+                        dp[i][j] = grid[i][j];
+                    } else {
+                        dp[i][j] = dp[i - 1][j] + grid[i][j];
+                    }
+                } else {
+                    dp[i][j] = Math.min(dp[i - 1][j] + grid[i][j], dp[i][j - 1] + grid[i][j]);
+                }
+            }
+        }
+        return dp[row - 1][col - 1];
+    }
+
 }
