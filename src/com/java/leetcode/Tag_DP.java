@@ -147,4 +147,51 @@ public class Tag_DP {
         return dp[row - 1][col - 1];
     }
 
+    // id 338
+    public int[] countBits(int num) {
+        int[] dp = new int[num + 1];
+        for (int i = 0; i <= num / 2; i++) {
+            dp[i * 2] = dp[i];
+            if (i * 2 + 1 <= num)
+                dp[i * 2 + 1] = dp[i] + 1;
+        }
+        return dp;
+    }
+
+    // id 647
+    // 不会
+    public int countSubstrings(String s) {
+        int length = s.length();
+        int[] dp = new int[length];
+        int count = 0;
+
+        for (int i = 0; i < length; i++) {
+            dp[i] = 1;
+            count++;
+            for (int j = 0; j < i; j++) {
+                if (s.charAt(i) == s.charAt(j) && dp[j + 1] == 1) {
+                    dp[j] = 1;
+                    count++;
+                } else {
+                    dp[j] = 0;
+                }
+            }
+        }
+        return count;
+    }
+
+    // id 279
+    // 不会
+    public int numSquares(int n) {
+        int[] dp = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
+            int val = i;
+            for (int j = 1; i - j * j >= 0; j++) {
+                val = Math.min(val, dp[i - j * j] + 1);
+            }
+            dp[i] = val;
+        }
+        return dp[n];
+    }
+
 }

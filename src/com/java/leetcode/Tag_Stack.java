@@ -99,4 +99,19 @@ public class Tag_Stack {
         return count == 0;
     }
 
+    // id 739
+    public int[] dailyTemperatures(int[] T) {
+
+        Stack<Integer> stack = new Stack<>();
+        int[] res = new int[T.length];
+
+        for(int i = 0; i < T.length; i++){
+            while(!stack.empty() && T[i] > T[stack.peek()]){
+                int temp = stack.pop();
+                res[temp] = i - temp;
+            }
+            stack.push(i);
+        }
+        return res;
+    }
 }

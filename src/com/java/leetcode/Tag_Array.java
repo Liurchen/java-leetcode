@@ -441,4 +441,22 @@ public class Tag_Array {
         return Arrays.copyOf(res, j + 1);
     }
 
+    // id 238
+    public int[] productExceptSelf(int[] nums) {
+        int result[] = new int[nums.length];
+        int left = 1;
+        // 从左往右遍历
+        for(int i = 0; i < nums.length; i++){
+            result[i] = left;
+            left = nums[i] * left;
+        }
+        int right = 1;
+        // 从右往左遍历
+        for(int i = nums.length - 1; i >= 0; i--){
+            result[i] *= right;
+            right = nums[i] * right;
+        }
+        return result;
+    }
+
 }
