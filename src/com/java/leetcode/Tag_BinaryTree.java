@@ -12,6 +12,11 @@ public class Tag_BinaryTree {
         }
     }
 
+    // id 144
+    public List<Integer> preorderTraversal(TreeNode root) {
+        return null;
+    }
+
     public void inOrder(TreeNode t) {
         if (t != null) {
             inOrder(t.left);
@@ -75,7 +80,7 @@ public class Tag_BinaryTree {
     }
 
     // id 102
-    public List<List<Integer>> levelOrder102(TreeNode root) {
+    public List<List<Integer>> levelOrder_102(TreeNode root) {
         if (root == null) return new ArrayList<>();
         List<List<Integer>> result = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
@@ -111,5 +116,86 @@ public class Tag_BinaryTree {
     // 不会
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         return null;
+    }
+
+    // id 543
+    // 不会
+    public int diameterOfBinaryTree(TreeNode root) {
+        return 0;
+    }
+
+    // id 面试题 55-1
+    public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+    }
+
+    // id 面试题 26 树的子结构
+    public boolean isSubStructure(TreeNode A, TreeNode B) {
+        if (A == null || B == null) return false;
+        return helper26(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B);
+    }
+
+    public boolean helper26(TreeNode A, TreeNode B) {
+        if (B == null) return true;
+        if (A == null) return false;
+        return A.val == B.val && helper26(A.left, B.left) && helper26(A.right, B.right);
+    }
+
+    // id 面试题 32-1
+    public int[] levelOrder_32_1(TreeNode root) {
+        if (root == null) return new int[]{};
+        List<Integer> res = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        while (!q.isEmpty()) {
+            TreeNode head = q.poll();
+            res.add(head.val);
+            if (head.left != null) {
+                q.offer(head.left);
+            }
+            if (head.right != null) {
+                q.offer(head.right);
+            }
+        }
+        int[] result = new int[res.size()];
+        for (int i = 0; i < res.size(); i++) {
+            result[i] = res.get(i);
+        }
+        return result;
+    }
+
+    // id 面试题 32-3
+    public List<List<Integer>> levelOrder_32_3(TreeNode root) {
+        if (root == null) return new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        int i = 0;
+        while (!queue.isEmpty()) {
+            // 每层的叶子数目 == queue.size()
+            int size = queue.size();
+            List<Integer> tmp = new ArrayList<>();
+            i++;
+            while (size > 0) {
+                TreeNode head = queue.poll();
+                assert head != null;
+                tmp.add(head.val);
+                if (head.left != null) {
+                    queue.offer(head.left);
+                }
+                if (head.right != null) {
+                    queue.offer(head.right);
+                }
+                size--;
+            }
+            if (i % 2 == 0) {
+                Collections.reverse(tmp);
+            }
+            result.add(tmp);
+        }
+        return result;
     }
 }

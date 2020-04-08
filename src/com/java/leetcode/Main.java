@@ -25,29 +25,19 @@ public class Main {
         Tag_BackTracking backTracking = new Tag_BackTracking();
         Tag_BinaryTree binaryTree = new Tag_BinaryTree();
 
-        TreeNode root = new TreeNode(3);
-        TreeNode t1 = new TreeNode(5);
-        TreeNode t2 = new TreeNode(1);
-        TreeNode t3 = new TreeNode(6);
-        TreeNode t4 = new TreeNode(2);
-        TreeNode t5 = new TreeNode(0);
-        TreeNode t6 = new TreeNode(8);
-        TreeNode t7 = new TreeNode(7);
-        TreeNode t8 = new TreeNode(4);
+        TreeNode r = new TreeNode(1);
+        TreeNode r1 = new TreeNode(2);
+        TreeNode r2 = new TreeNode(3);
+        TreeNode r3 = new TreeNode(4);
+        TreeNode r4 = new TreeNode(5);
 
-        root.left = t1;
-        root.right = t2;
+        r.left = r1;
+        r.right = r2;
 
-        t1.left = t3;
-        t1.right = t4;
+        r1.left = r3;
+        r1.right = r4;
 
-        t2.left = t5;
-        t2.right = t6;
-
-        t4.left = t7;
-        t4.right = t8;
-
-        binaryTree.lowestCommonAncestor(root, t1, t2);
+        System.out.println(binaryTree.levelOrder_32_3(r));
 
 
     }

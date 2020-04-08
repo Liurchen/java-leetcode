@@ -443,7 +443,7 @@ public class Tag_Array {
 
     // id 238
     public int[] productExceptSelf(int[] nums) {
-        int result[] = new int[nums.length];
+        int[] result = new int[nums.length];
         int left = 1;
         // 从左往右遍历
         for(int i = 0; i < nums.length; i++){

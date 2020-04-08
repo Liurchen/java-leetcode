@@ -2,6 +2,7 @@ package com.java.leetcode;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Stack;
 
 public class Tag_LinkedList {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -168,5 +169,53 @@ public class Tag_LinkedList {
             slow = slow.next;
         }
         return slow;
+    }
+
+    // id 142
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (true) {
+            if (slow != null && slow.next != null) {
+                slow = slow.next;
+            } else {
+                return null;
+            }
+            if (fast.next != null && fast.next.next != null) {
+                fast = fast.next.next;
+            } else {
+                return null;
+            }
+            if (fast == slow) {
+                fast = head;
+                break;
+            }
+        }
+        if (slow == fast) {
+            return slow;
+        }
+        while (true) {
+            slow = slow.next;
+            fast = fast.next;
+            if (slow == fast) {
+                return slow;
+            }
+        }
+    }
+
+    // id 面试题06
+    public int[] reversePrint(ListNode head) {
+        Stack<Integer> s = new Stack<>();
+        while (head != null) {
+            s.push(head.val);
+            head = head.next;
+        }
+        int[] res = new int[s.size()];
+        int i = 0;
+        while (!s.isEmpty()) {
+            res[i] = s.pop();
+            i++;
+        }
+        return res;
     }
 }
