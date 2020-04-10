@@ -47,17 +47,27 @@ public class Tag_Math {
     // id 633
     public boolean judgeSquareSum(int c) {
         //这里强制类型转换，做一个截断
-        int i = 0, j = (int)Math.sqrt(c);
-        while(i <= j){
+        int i = 0, j = (int) Math.sqrt(c);
+        while (i <= j) {
             int sum = i * i + j * j;
-            if(sum < c){
+            if (sum < c) {
                 i++;
-            }else if(sum > c){
+            } else if (sum > c) {
                 j--;
-            }else{
+            } else {
                 return true;
             }
         }
         return false;
+    }
+
+    // id 面试题 16.05
+    public int trailingZeroes(int n) {
+        int res = 0;
+        while (n > 0) {
+            res += n / 5;
+            n /= 5;
+        }
+        return res;
     }
 }

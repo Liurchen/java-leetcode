@@ -28,4 +28,14 @@ public class Tag_Bitwise {
         }
         return count;
     }
+
+    // id 1009
+    // 不会
+    public int bitwiseComplement(int N) {
+        int num = 1;
+        while(num < N){
+            num = (num << 1) + 1;
+        }
+        return N ^ num;
+    }
 }

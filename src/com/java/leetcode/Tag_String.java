@@ -18,11 +18,7 @@ public class Tag_String {
         LinkedHashMap<Character, Integer> hm = new LinkedHashMap<>();
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
-            if (hm.get(ch) == null) {
-                hm.put(ch, 1);
-            } else {
-                hm.put(ch, hm.get(ch) + 1);
-            }
+            hm.merge(ch, 1, Integer::sum);
         }
         for (char ch : hm.keySet()) {
             if (hm.get(ch) == 1) {
@@ -70,8 +66,28 @@ public class Tag_String {
         return chars.length;
     }
 
-    public boolean repeatedSubstringPattern(String s) {
-        return false;
+    // id 151
+    public String reverseWords(String s) {
+        if (s.length() <= 1) return "";
+        StringBuilder res = new StringBuilder();
+        String[] S = s.split(" ");
+        Stack<String> stack = new Stack<>();
+        for (String str : S) {
+            if (!str.equals("")) {
+                stack.push(str);
+            }
+        }
+        while (!stack.isEmpty()) {
+            res.append(stack.pop());
+            res.append(" ");
+        }
+        System.out.println(res.toString().trim());
+        return res.toString().trim();
+    }
+
+    // id 1108
+    public String defangIPaddr(String address) {
+        return address.replace(".", "[.]");
     }
 
 }

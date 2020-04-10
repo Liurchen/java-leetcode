@@ -24,22 +24,9 @@ public class Main {
         Tag_Binary binary = new Tag_Binary();
         Tag_BackTracking backTracking = new Tag_BackTracking();
         Tag_BinaryTree binaryTree = new Tag_BinaryTree();
+        Tag_DFS dfs = new Tag_DFS();
 
-        TreeNode r = new TreeNode(1);
-        TreeNode r1 = new TreeNode(2);
-        TreeNode r2 = new TreeNode(3);
-        TreeNode r3 = new TreeNode(4);
-        TreeNode r4 = new TreeNode(5);
-
-        r.left = r1;
-        r.right = r2;
-
-        r1.left = r3;
-        r1.right = r4;
-
-        System.out.println(binaryTree.levelOrder_32_3(r));
-
-
+        math.trailingZeroes(20);
     }
 }
 
