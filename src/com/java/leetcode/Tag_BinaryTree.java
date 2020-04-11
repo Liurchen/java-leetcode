@@ -199,14 +199,72 @@ public class Tag_BinaryTree {
         return result;
     }
 
-    // id 235
-    public TreeNode lowestCommonAncestor_235(TreeNode root, TreeNode p, TreeNode q) {
-
-        return null;
-    }
-
     // id 108
     public TreeNode sortedArrayToBST(int[] nums) {
-        return null;
+        // idea 左右区间分治策略 递归
+        // 求中点不要用 int mid = (start + end)/2，有溢出风险，稳妥的方法是 int mid = start + (end-start)/2
+        // 如果你把除2改成右移1位，会和面试官更搭哦
+        return nums == null ? null : dfs_108(nums, 0, nums.length - 1);
+    }
+
+    private TreeNode dfs_108(int[] nums, int start, int end) {
+        if (start > end) return null;
+        int mid = start + (end - start) / 2;
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = dfs_108(nums, start, mid - 1);
+        node.right = dfs_108(nums, mid + 1, end);
+        return node;
+    }
+
+    // id 404
+    private int sum = 0;
+
+    public int sumOfLeftLeaves(TreeNode root) {
+        if (root != null) {
+            // 怎么样是左叶子哦~
+            if (root.left != null && root.left.left == null && root.left.right == null) sum += root.left.val;
+            System.out.printf("sum: %d\n", sum);
+            sumOfLeftLeaves(root.left);
+            sumOfLeftLeaves(root.right);
+        }
+        return sum;
+    }
+
+    // id 501
+    int preVal = 0, curTimes = 0, maxTimes = 0;
+    ArrayList<Integer> list = new ArrayList<Integer>();
+
+    public int[] findMode(TreeNode root) {
+        traversal(root);
+        //list转换为int[]
+        int size = list.size();
+        int[] ans = new int[size];
+        for (int i = 0; i < size; i++) {
+            ans[i] = list.get(i);
+        }
+        return ans;
+    }
+
+    //二叉搜索树中序遍历是递增顺序
+    public void traversal(TreeNode root) {
+        if (root != null) {
+            traversal(root.left);
+            //判断当前值与上一个值的关系, 更新 curTimes 和 preVal
+            if (preVal == root.val) {
+                curTimes++;
+            } else {
+                preVal = root.val;
+                curTimes = 1;
+            }
+            //判断当前数量与最大数量的关系, 更新 list 和 maxTimes
+            if (curTimes == maxTimes) {
+                list.add(root.val);
+            } else if (curTimes > maxTimes) {
+                list.clear();
+                list.add(root.val);
+                maxTimes = curTimes;
+            }
+            traversal(root.right);
+        }
     }
 }

@@ -26,8 +26,18 @@ public class Main {
         Tag_BinaryTree binaryTree = new Tag_BinaryTree();
         Tag_DFS dfs = new Tag_DFS();
 
-        int[] nums = {-10, -3, 0, 5, 9};
-        binaryTree.sortedArrayToBST(nums);
+        TreeNode p1 = new TreeNode(3);
+        TreeNode p2 = new TreeNode(9);
+        TreeNode p3 = new TreeNode(20);
+        TreeNode p4 = new TreeNode(15);
+        TreeNode p5 = new TreeNode(7);
+
+        p2.left = p5;
+        p2.right = p3;
+        p5.left = p1;
+        p3.left = p4;
+
+        binaryTree.findMode(p2);
     }
 }
 
