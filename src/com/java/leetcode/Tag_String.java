@@ -68,7 +68,7 @@ public class Tag_String {
 
     // id 151
     public String reverseWords(String s) {
-        if (s.length() <= 1) return "";
+        if (s.length() <= 1) return s;
         StringBuilder res = new StringBuilder();
         String[] S = s.split(" ");
         Stack<String> stack = new Stack<>();
@@ -86,8 +86,29 @@ public class Tag_String {
     }
 
     // id 1108
-    public String defangIPaddr(String address) {
+    public String invalidIPAddr(String address) {
         return address.replace(".", "[.]");
+    }
+
+    // id 557
+    public String reverseWords_2(String s) {
+        if (s.length() == 0) return "";
+        if (s.equals(" ")) return "";
+        String[] S = s.split(" ");
+        StringBuilder res = new StringBuilder();
+        for (String str : S) {
+            Stack<Character> tmp = new Stack<>();
+            StringBuilder stmp = new StringBuilder();
+            for (int i = 0; i < str.length(); i++) {
+                tmp.push(str.charAt(i));
+            }
+            while (!tmp.isEmpty()) {
+                stmp.append(tmp.pop());
+            }
+            res.append(stmp.toString());
+            res.append(" ");
+        }
+        return res.toString().trim();
     }
 
 }

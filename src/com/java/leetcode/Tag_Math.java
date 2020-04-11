@@ -70,4 +70,12 @@ public class Tag_Math {
         }
         return res;
     }
+
+    // id 292
+    public boolean canWinNim(int n) {
+        // 巴什博弈问题
+        // 如果n%(m+1)等于0 那么必然后手获胜
+        // 否则先手获胜
+        return n % 4 != 0;
+    }
 }

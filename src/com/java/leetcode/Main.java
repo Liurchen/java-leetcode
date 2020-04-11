@@ -26,7 +26,8 @@ public class Main {
         Tag_BinaryTree binaryTree = new Tag_BinaryTree();
         Tag_DFS dfs = new Tag_DFS();
 
-        math.trailingZeroes(20);
+        int[] nums = {-10, -3, 0, 5, 9};
+        binaryTree.sortedArrayToBST(nums);
     }
 }
 
