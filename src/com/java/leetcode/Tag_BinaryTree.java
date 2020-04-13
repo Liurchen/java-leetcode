@@ -1,5 +1,7 @@
 package com.java.leetcode;
 
+import com.sun.source.tree.Tree;
+
 import java.util.*;
 
 public class Tag_BinaryTree {
@@ -106,15 +108,9 @@ public class Tag_BinaryTree {
         return result;
     }
 
-    // id 105
+    // id 235
     // 不会
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
-        return null;
-    }
-
-    // id 236
-    // 不会
-    public TreeNode lowestCommonAncestor_236(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         return null;
     }
 
@@ -266,5 +262,44 @@ public class Tag_BinaryTree {
             }
             traversal(root.right);
         }
+    }
+
+    // id 701
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        return null;
+    }
+
+    // id 105
+    // id 面试题 07
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        if (preorder.length == 0 || inorder.length == 0) return null;
+        if (preorder.length == 1) return new TreeNode(preorder[0]);
+        return buildTreeCore(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
+    }
+
+    private TreeNode buildTreeCore(int[] preorder, int[] inorder, int preStart, int preEnd, int inStart, int inEnd) {
+        if (preStart > preEnd) return null;
+        TreeNode root = new TreeNode(preorder[preStart]);
+        int rootInPos = inStart;
+        while (rootInPos < inEnd) {
+            if (inorder[rootInPos] == root.val) {
+                break;
+            }
+            rootInPos++;
+        }
+        System.out.printf("root pos is %d in inorder\n", rootInPos);
+        // 左子树
+        int leftLen = rootInPos - inStart;
+        int leftPreStart = preStart + 1;
+        int leftPreEnd = leftPreStart + leftLen - 1;
+        int leftInEnd = rootInPos - 1;
+        root.left = buildTreeCore(preorder, inorder, leftPreStart, leftPreEnd, inStart, leftInEnd);
+        // 右子树
+        int rightLen = inEnd - rootInPos;
+        int rightPreStart = leftPreEnd + 1;
+        int rightPreEnd = rightPreStart + rightLen - 1;
+        int rightInStart = rootInPos + 1;
+        root.right = buildTreeCore(preorder, inorder, rightPreStart, rightPreEnd, rightInStart, inEnd);
+        return root;
     }
 }

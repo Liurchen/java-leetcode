@@ -33,9 +33,26 @@ public class Tag_Bitwise {
     // 不会
     public int bitwiseComplement(int N) {
         int num = 1;
-        while(num < N){
+        while (num < N) {
             num = (num << 1) + 1;
         }
         return N ^ num;
+    }
+
+    // id 191
+    public int hammingWeight(int n) {
+        int res = 0;
+        while (n != 0) {
+            res += n & 1;
+            n >>= 1;
+        }
+        return res;
+    }
+
+    // id 371
+    // 不会 需要理解 + - 操作符如何实现
+    public int getSum(int a, int b) {
+
+        return 0;
     }
 }

@@ -217,4 +217,36 @@ public class Tag_DP {
         return Math.max(dp[prices.length - 1][0], dp[prices.length - 1][2]);
     }
 
+    // id 509
+    public int fib(int N) {
+        if (N == 0) return 0;
+        int[] dp = new int[N + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+        for (int i = 2; i < N + 1; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[N];
+    }
+
+    // id 1137
+    public int tribonacci(int n) {
+        if (n == 0) return 0;
+        if (n == 1) return 1;
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 1;
+        for (int i = 3; i < n + 1; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
+        }
+        return dp[n];
+    }
+
+    // id 873
+    public int lenLongestFibSubseq(int[] A) {
+
+        return 0;
+    }
+
 }

@@ -446,17 +446,34 @@ public class Tag_Array {
         int[] result = new int[nums.length];
         int left = 1;
         // 从左往右遍历
-        for(int i = 0; i < nums.length; i++){
+        for (int i = 0; i < nums.length; i++) {
             result[i] = left;
             left = nums[i] * left;
         }
         int right = 1;
         // 从右往左遍历
-        for(int i = nums.length - 1; i >= 0; i--){
+        for (int i = nums.length - 1; i >= 0; i--) {
             result[i] *= right;
             right = nums[i] * right;
         }
         return result;
+    }
+
+    // id 896
+    public boolean isMonotonic(int[] A) {
+        int n = A.length;
+        if (n < 3) return true;
+        boolean flag1 = false, flag2 = false;  //flag1递增标志  flag2递减标志
+        for (int i = 1; i < n; i++) {
+            if (A[i] - A[i - 1] > 0) {
+                if (flag2) return false;
+                flag1 = true;
+            } else if (A[i] - A[i - 1] < 0) {
+                if (flag1) return false;
+                flag2 = true;
+            }
+        }
+        return true;
     }
 
 }
