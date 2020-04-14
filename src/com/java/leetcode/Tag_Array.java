@@ -163,19 +163,22 @@ public class Tag_Array {
     }
 
     public int majorityElement(int[] nums) {
-        int m = 0, i = 0;
-        for (int num : nums) {
+        int m = 0, cnt = 0;
+        for (int i = 0; i < nums.length; i++) {
             if (i == 0) {
-                m = num;
-                i++;
-            } else if (m == num) {
-                i++;
+                m = nums[i];
+                cnt++;
             } else {
-                i--;
+                if (nums[i] == m) {
+                    cnt++;
+                } else {
+                    cnt--;
+                }
+                if (cnt == 0) {
+                    m = nums[i];
+                    cnt++;
+                }
             }
-        }
-        if (i == 0) {
-            return -1;
         }
         return m;
     }
@@ -474,6 +477,33 @@ public class Tag_Array {
             }
         }
         return true;
+    }
+
+    // id 350
+    public int[] intersect(int[] nums1, int[] nums2) {
+        List<Integer> result = new ArrayList<>();
+        int i = 0, j = 0;
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        if (nums1.length == 0 || nums2.length == 0) {
+            return new int[0];
+        }
+        do {
+            if (nums1[i] == nums2[j]) {
+                result.add(nums1[i]);
+                i++;
+                j++;
+            } else if (nums1[i] < nums2[j]) {
+                i++;
+            } else {
+                j++;
+            }
+        } while (i < nums1.length && j < nums2.length);
+        int[] arr = new int[result.size()];
+        for (int k = 0; k < arr.length; k++) {
+            arr[k] = result.get(k);
+        }
+        return arr;
     }
 
 }

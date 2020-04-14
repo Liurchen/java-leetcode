@@ -105,12 +105,41 @@ public class Tag_Stack {
         Stack<Integer> stack = new Stack<>();
         int[] res = new int[T.length];
 
-        for(int i = 0; i < T.length; i++){
-            while(!stack.empty() && T[i] > T[stack.peek()]){
+        for (int i = 0; i < T.length; i++) {
+            while (!stack.empty() && T[i] > T[stack.peek()]) {
                 int temp = stack.pop();
                 res[temp] = i - temp;
             }
             stack.push(i);
+        }
+        return res;
+    }
+
+    // id 445
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        Stack<Integer> s1 = new Stack<>();
+        Stack<Integer> s2 = new Stack<>();
+        while (l1 != null) {
+            s1.push(l1.val);
+            l1 = l1.next;
+        }
+        while (l2 != null) {
+            s2.push(l2.val);
+            l2 = l2.next;
+        }
+        int t = 0; //进位变量
+        ListNode res = null;
+        while (!s1.isEmpty() || !s2.isEmpty() || t > 0) {
+            if (!s1.isEmpty()) {
+                t += s1.pop();
+            }
+            if (!s2.isEmpty()) {
+                t += s2.pop();
+            }
+            ListNode cur = new ListNode(t % 10);
+            cur.next = res; //头插法
+            res = cur;
+            t /= 10;
         }
         return res;
     }
