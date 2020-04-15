@@ -1,7 +1,5 @@
 package com.java.leetcode;
 
-import com.sun.source.tree.Tree;
-
 import java.util.*;
 
 public class Tag_BinaryTree {
@@ -215,7 +213,7 @@ public class Tag_BinaryTree {
     // id 404
     private int sum = 0;
 
-    public int sumOfLeftLeaves(TreeNode root) {
+    public void sumOfLeftLeaves(TreeNode root) {
         if (root != null) {
             // 怎么样是左叶子哦~
             if (root.left != null && root.left.left == null && root.left.right == null) sum += root.left.val;
@@ -223,7 +221,6 @@ public class Tag_BinaryTree {
             sumOfLeftLeaves(root.left);
             sumOfLeftLeaves(root.right);
         }
-        return sum;
     }
 
     // id 501

@@ -52,7 +52,21 @@ public class Tag_Bitwise {
     // id 371
     // 不会 需要理解 + - 操作符如何实现
     public int getSum(int a, int b) {
-
         return 0;
+    }
+
+    // id 1342
+    public int numberOfSteps(int num) {
+        int step = 0;
+        while (num > 0) {
+            if (num % 2 == 0) {
+                num >>= 1;
+            } else {
+                num -= 1;
+            }
+            step++;
+
+        }
+        return step;
     }
 }

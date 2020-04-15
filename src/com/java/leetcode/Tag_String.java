@@ -130,4 +130,9 @@ public class Tag_String {
         return res;
     }
 
+    // id 面试题 58-II
+    public String reverseLeftWords(String s, int n) {
+        return s.substring(n) + s.substring(0, n);
+    }
+
 }

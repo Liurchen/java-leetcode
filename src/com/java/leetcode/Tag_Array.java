@@ -506,4 +506,18 @@ public class Tag_Array {
         return arr;
     }
 
+    // id LCP 1.猜数字
+    public int game(int[] guess, int[] answer) {
+        int p1 = 0, p2 = 0;
+        int cnt = 0;
+        while (p1 < guess.length) {
+            if (guess[p1] == answer[p2]) {
+                cnt++;
+            }
+            p1++;
+            p2++;
+        }
+        return cnt;
+    }
+
 }
