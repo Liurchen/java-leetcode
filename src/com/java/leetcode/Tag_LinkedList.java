@@ -90,6 +90,7 @@ public class Tag_LinkedList {
         if (n > 0 && n < idx) {
             map.get(idx - n - 1).next = map.get(idx - n + 1);
         } else if (n == idx) {
+            assert head != null;
             return head.next;
         }
         return head;
