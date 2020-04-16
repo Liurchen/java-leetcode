@@ -219,4 +219,19 @@ public class Tag_LinkedList {
         }
         return res;
     }
+
+    // id 面试题 02.02
+    public int kthToLast(ListNode head, int k) {
+        ListNode fast = head;
+        ListNode slow = head;
+        while (fast != null) {
+            fast = fast.next;
+            k--;
+            if (k < 0) {
+                slow = slow.next;
+            }
+        }
+        assert slow != null;
+        return slow.val;
+    }
 }

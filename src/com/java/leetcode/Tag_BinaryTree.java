@@ -203,11 +203,11 @@ public class Tag_BinaryTree {
 
     private TreeNode dfs_108(int[] nums, int start, int end) {
         if (start > end) return null;
-        int mid = start + (end - start) / 2;
-        TreeNode node = new TreeNode(nums[mid]);
-        node.left = dfs_108(nums, start, mid - 1);
-        node.right = dfs_108(nums, mid + 1, end);
-        return node;
+        int mid = ((end - start) >> 1) + start;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = dfs_108(nums, start, mid - 1);
+        root.right = dfs_108(nums, mid + 1, end);
+        return root;
     }
 
     // id 404
@@ -263,7 +263,18 @@ public class Tag_BinaryTree {
 
     // id 701
     public TreeNode insertIntoBST(TreeNode root, int val) {
-        return null;
+        if (root != null) {
+            if (root.val < val) {
+                root.right = insertIntoBST(root.right, val);
+            } else if (root.val > val) {
+                root.left = insertIntoBST(root.left, val);
+            } else {
+                return root;
+            }
+        } else {
+            return new TreeNode(val);
+        }
+        return root;
     }
 
     // id 105
@@ -298,5 +309,87 @@ public class Tag_BinaryTree {
         int rightInStart = rootInPos + 1;
         root.right = buildTreeCore(preorder, inorder, rightPreStart, rightPreEnd, rightInStart, inEnd);
         return root;
+    }
+
+    // id 面试题 27
+    public TreeNode mirrorTree(TreeNode root) {
+        if (root == null) return null;
+        // root.left = 翻转好了的左子树
+        root.left = mirrorTree(root.left);
+        root.right = mirrorTree(root.right);
+        // 最后在根节点上翻转
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+        return root;
+    }
+
+    // id 938
+    // 递归真香
+    public int rangeSumBST(TreeNode root, int L, int R) {
+        if (root == null) return 0;
+        if (root.val >= L && root.val <= R) {
+            return root.val + rangeSumBST(root.left, L, R) + rangeSumBST(root.right, L, R);
+        } else if (root.val < L) {
+            return rangeSumBST(root.right, L, R);
+        } else {
+            return rangeSumBST(root.left, L, R);
+        }
+    }
+
+    // id 700
+    public TreeNode searchBST(TreeNode root, int val) {
+        if (root == null) return null;
+        if (root.val == val) {
+            return root;
+        } else if (root.val > val) {
+            return searchBST(root.left, val);
+        } else {
+            return searchBST(root.right, val);
+        }
+    }
+
+    // id 590
+    // TBD
+    public List<Integer> postorder_590(Node root) {
+        if (root == null) return new ArrayList<>();
+        List<List<Integer>> result = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> tmpArr = new ArrayList<>();
+            while (size > 0) {
+                Node tmp = queue.poll();
+                assert tmp != null;
+                tmpArr.add(tmp.val);
+                size--;
+                for (Node child : tmp.children) {
+                    queue.offer(child);
+                }
+            }
+            result.add(tmpArr);
+        }
+        List<Integer> res = new ArrayList<>();
+        for (int i = result.size() - 1; i >= 0; i--) {
+            res.addAll(result.get(i));
+        }
+        return res;
+    }
+
+    // id 面试题 54
+    // 1,二叉搜索树中序遍历就是一个有序的数组
+    public int kthLargest(TreeNode root, int k) {
+        List<Integer> res = new ArrayList<>();
+        inorder(root, res);
+        return res.get(res.size() - k);
+    }
+
+    private void inorder(TreeNode root, List<Integer> res) {
+        if (root != null) {
+            inorder(root.left, res);
+            res.add(root.val);
+            inorder(root.right, res);
+        }
     }
 }
