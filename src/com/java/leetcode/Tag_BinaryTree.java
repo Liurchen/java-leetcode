@@ -392,4 +392,22 @@ public class Tag_BinaryTree {
             inorder(root.right, res);
         }
     }
+
+    // id 面试题 28 对称二叉树
+    // id 101
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null)
+            return true;
+        return isSymmetricHelper(root.left, root.right);
+    }
+
+    public boolean isSymmetricHelper(TreeNode root1, TreeNode root2) {
+        if (root1 == null && root2 == null)
+            return true;
+        if (root1 == null || root2 == null)
+            return false;
+        // 传入 左右 跟 右左 怎么理解？
+        return root1.val == root2.val && isSymmetricHelper(root1.left, root2.right) &&
+                isSymmetricHelper(root1.right, root2.left);
+    }
 }
