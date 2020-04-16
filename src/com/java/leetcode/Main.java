@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public static <K, V> void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 
         Tag_Array array = new Tag_Array();
         Tag_LinkedList linkedList = new Tag_LinkedList();
@@ -22,6 +22,10 @@ public class Main {
         Tag_BinaryTree binaryTree = new Tag_BinaryTree();
         Tag_DFS dfs = new Tag_DFS();
         Tag_BFS bfs = new Tag_BFS();
+        Tag_Interview interview = new Tag_Interview();
+        Tag_Sort sort = new Tag_Sort();
+
+        sort.selectionSort(new int[]{5, 2, 3, 1, 4});
 
     }
 }
