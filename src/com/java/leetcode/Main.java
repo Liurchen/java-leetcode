@@ -25,7 +25,7 @@ public class Main {
         Tag_Interview interview = new Tag_Interview();
         Tag_Sort sort = new Tag_Sort();
 
-        sort.selectionSort(new int[]{5, 2, 3, 1, 4});
+        dp.maxSubArray(new int[]{-2, 8, -4, 6, -1});
 
     }
 }

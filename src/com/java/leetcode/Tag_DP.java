@@ -1,6 +1,7 @@
 package com.java.leetcode;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class Tag_DP {
 
@@ -53,20 +54,32 @@ public class Tag_DP {
     }
 
     // id 面试题 42
+    // id 53
+    // 最大和连续子数组
     public int maxSubArray(int[] nums) {
-        if (nums.length == 1) return nums[0];
-        if (nums.length == 0) return 0;
+        if (nums.length <= 1) return nums[0];
         int[] dp = new int[nums.length];
         dp[0] = nums[0];
+        int max = dp[0];
+        int end = 0;
         for (int i = 1; i < nums.length; i++) {
-            if (dp[i - 1] > 0) {
-                dp[i] = dp[i - 1] + nums[i];
-            } else {
-                dp[i] = nums[i];
+            dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
+            if (dp[i] > max) {
+                max = dp[i];
+                end = i;
             }
         }
-        Arrays.sort(dp);
-        return dp[dp.length - 1];
+        // 找出和最大的子序列
+        // idea 从最大的索引开始
+        // 倒序寻找 因为是连续的
+        int start = end;
+        while (max > 0) {
+            max -= nums[start];
+            start--;
+        }
+        System.out.println(start + 1);
+        System.out.println(end);
+        return dp[end];
     }
 
     // id 面试题 17.16
