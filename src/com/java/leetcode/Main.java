@@ -25,8 +25,7 @@ public class Main {
         Tag_Interview interview = new Tag_Interview();
         Tag_Sort sort = new Tag_Sort();
 
-        dp.maxSubArray(new int[]{-2, 8, -4, 6, -1});
-
+        System.out.println(str.lengthOfLongestSubstring("abcabcbb"));
     }
 }
 

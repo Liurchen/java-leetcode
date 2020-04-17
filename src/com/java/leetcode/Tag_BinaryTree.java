@@ -279,6 +279,7 @@ public class Tag_BinaryTree {
 
     // id 105
     // id 面试题 07
+    // 前序+中序
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         if (preorder.length == 0 || inorder.length == 0) return null;
         if (preorder.length == 1) return new TreeNode(preorder[0]);
@@ -410,4 +411,11 @@ public class Tag_BinaryTree {
         return root1.val == root2.val && isSymmetricHelper(root1.left, root2.right) &&
                 isSymmetricHelper(root1.right, root2.left);
     }
+
+    // 构造二叉树问题
+    // 1，前序遍历+中序遍历 构造二叉树 唯一
+    // 2，中序遍历+后序遍历 构造二叉树 唯一
+    // 3，前序遍历+后序遍历 构造二叉树 答案不唯一
+    // 4，前序遍历 构造二叉搜索树
+
 }

@@ -135,4 +135,32 @@ public class Tag_String {
         return s.substring(n) + s.substring(0, n);
     }
 
+    // id 3
+    // id 面试题 48
+    // 无重复最长字串
+    // 优化一下 使用hashmap
+    public int lengthOfLongestSubstring(String s) {
+        if (s.length() < 2) return s.length();
+        int len = 1;
+        int start = 0;
+        int end = 1;
+        if (s.charAt(start) != s.charAt(end)) {
+            len++;
+            end++;
+        } else {
+            start++;
+        }
+        while (end < s.length()) {
+            int pos = s.substring(start, end).indexOf(s.substring(end, end + 1));
+            if (pos == -1) {
+                end++;
+                len = Math.max(len, end - start);
+            } else {
+                start = pos + 1 + start;
+                end = start + 1;
+            }
+        }
+        return len;
+    }
+
 }
