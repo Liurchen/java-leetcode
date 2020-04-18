@@ -386,7 +386,7 @@ public class Tag_Array {
         // 首尾加一个元素
         S = "0" + S + "0";
         int start = 0;
-        while (start < S.length()) {
+        while (true) {
             int end = start + 1;
             if (end >= S.length()) break;
             while (S.charAt(end) == S.charAt(start)) {
@@ -562,6 +562,24 @@ public class Tag_Array {
         if (major1 != major2 && count2 > nums.length / 3)
             ret.add(major2);
         return ret;
+    }
+
+    // id 11
+    // 双指针
+    public int maxArea(int[] height) {
+        if (height.length < 2) return 0;
+        int l = 0, r = height.length - 1;
+        if (height.length == 2) return Math.min(height[0], height[1]);
+        int max = 0;
+        while (l < r) {
+            max = Math.max(max, (r - l) * Math.min(height[l], height[r]));
+            if (height[l] > height[r]) {
+                r--;
+            } else {
+                l++;
+            }
+        }
+        return max;
     }
 
 }

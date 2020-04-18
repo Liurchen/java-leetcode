@@ -25,7 +25,8 @@ public class Main {
         Tag_Interview interview = new Tag_Interview();
         Tag_Sort sort = new Tag_Sort();
 
-        System.out.println(str.lengthOfLongestSubstring("abcabcbb"));
+        int[] pre = new int[]{1, 2, 4, 5, 3, 6, 7};
+        int[] post = new int[]{4, 5, 2, 6, 7, 3, 1};
     }
 }
 

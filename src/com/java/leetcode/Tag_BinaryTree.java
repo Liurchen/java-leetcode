@@ -1,5 +1,7 @@
 package com.java.leetcode;
 
+import com.sun.source.tree.Tree;
+
 import java.util.*;
 
 public class Tag_BinaryTree {
@@ -417,5 +419,118 @@ public class Tag_BinaryTree {
     // 2，中序遍历+后序遍历 构造二叉树 唯一
     // 3，前序遍历+后序遍历 构造二叉树 答案不唯一
     // 4，前序遍历 构造二叉搜索树
+
+    // 前+中
+    public TreeNode buildTreeFromPreIn(int[] preorder, int[] inorder) {
+        if (preorder.length == 0 || inorder.length == 0) return null;
+        if (preorder.length == 1 && inorder.length == 1) return new TreeNode(preorder[0]);
+        return buildTreeFromPreInCore(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
+    }
+
+    private TreeNode buildTreeFromPreInCore(int[] preorder, int preS, int preE, int[] inorder, int inS, int inE) {
+        if (preS > preE) return null;
+        TreeNode root = new TreeNode(preorder[preS]);
+        // 找到根节点在中序中的位置，以此来划分左右子树
+        int pos = inS;
+        while (pos < inE) {
+            if (inorder[pos] == root.val) {
+                break;
+            }
+            pos++;
+        }
+        // pos的左边是左子树，右边是右子树，递归即可
+        int leftLen = pos - inS;
+        int rightLen = inE - pos;
+        // 确定子区间
+        int newLeftPreS = preS + 1;
+        int newLeftPreE = newLeftPreS + leftLen - 1;
+        int newRightPreS = newLeftPreE + 1;
+        int newRightPreE = newRightPreS + rightLen - 1;
+
+        int newLeftInE = pos - 1;
+        int newRightInS = pos + 1;
+        int newRightInE = newRightInS + rightLen - 1;
+
+        root.left = buildTreeFromPreInCore(preorder, newLeftPreS, newLeftPreE, inorder, inS, newLeftInE);
+        root.right = buildTreeFromPreInCore(preorder, newRightPreS, newRightPreE, inorder, newRightInS, newRightInE);
+        return root;
+    }
+
+    // 前+后
+    public TreeNode buildTreeFromPrePost(int[] pre, int[] post) {
+        if (pre.length == 0 || post.length == 0) return null;
+        if (pre.length == 1 && post.length == 1) return new TreeNode(pre[0]);
+        int[] reversePost = new int[post.length];
+        for (int i = 0; i < reversePost.length; i++) {
+            reversePost[i] = post[post.length - i - 1];
+        }
+        return buildTreeFromPrePostCore(pre, 0, pre.length - 1, reversePost, 0, reversePost.length - 1);
+    }
+
+    private TreeNode buildTreeFromPrePostCore(int[] pre, int preS, int preE, int[] post, int postS, int postE) {
+        if (preS > preE || postS > postE) return null;
+        TreeNode root = new TreeNode(pre[preS]);
+        if (preS == preE) return root;
+        // 找到右子树的起点
+        int pos = preS;
+        while (pos < preE) {
+            if (post[postS + 1] == pre[pos]) {
+                break;
+            }
+            pos++;
+        }
+
+        int leftPreS = preS + 1;
+        int rightPreS = pos;
+        int leftPreE = rightPreS - 1;
+
+        // 左右子树节点数
+        int leftLen = rightPreS - leftPreS;
+        int rightLen = 1 + preE - rightPreS;
+
+        int rightPostS = postS + 1;
+        int rightPostE = rightPostS + rightLen - 1;
+        int leftPostS = rightPostE + 1;
+
+        root.left = buildTreeFromPrePostCore(pre, leftPreS, leftPreE, post, leftPostS, postE);
+        root.right = buildTreeFromPrePostCore(pre, rightPreS, preE, post, rightPostS, rightPostE);
+        return root;
+    }
+
+    // 中+后
+    public TreeNode buildTreeFromInPost(int[] inorder, int[] postorder) {
+        if (inorder.length == 0 || postorder.length == 0) return null;
+        if (inorder.length == 1 || postorder.length == 1) return new TreeNode(inorder[0]);
+        return buildTreeFromInPostCore(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1);
+    }
+
+    private TreeNode buildTreeFromInPostCore(int[] inorder, int inS, int inE, int[] postorder, int postS, int postE) {
+        if (inS > inE || postS > postE) return null;
+        TreeNode root = new TreeNode(postorder[postE]);
+        if (postE == postS) return root;
+
+        // 寻找根节点在中序遍历中的位置，以此来划分左右子树
+        int pos = inS;
+        while (pos < inE) {
+            if (postorder[postE] == inorder[pos]) {
+                break;
+            }
+            pos++;
+        }
+
+        int leftInE = pos - 1;
+        int rightInS = pos + 1;
+
+        int leftLen = pos - inS;
+        int rightLen = inE - pos;
+
+        int leftPostE = postS + leftLen - 1;
+        int rightPostS = leftPostE + 1;
+        int rightPostE = postE - 1;
+
+        root.left = buildTreeFromInPostCore(inorder, inS, leftInE, postorder, postS, leftPostE);
+        root.right = buildTreeFromInPostCore(inorder, rightInS, inE, postorder, rightPostS, rightPostE);
+        return root;
+    }
 
 }
