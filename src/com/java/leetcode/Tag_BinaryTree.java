@@ -1,7 +1,5 @@
 package com.java.leetcode;
 
-import com.sun.source.tree.Tree;
-
 import java.util.*;
 
 public class Tag_BinaryTree {
@@ -532,5 +530,84 @@ public class Tag_BinaryTree {
         root.right = buildTreeFromInPostCore(inorder, rightInS, inE, postorder, rightPostS, rightPostE);
         return root;
     }
+
+    // 树的路径问题
+    // 1，路径和
+    // 2，打印路径
+
+    // id 112 是否存在路经总和为K的路径
+    // 递归实现
+    // 终止条件要想清楚
+    // 1 判断在叶子节点 是否为0了
+    private boolean ans = false;
+
+    public boolean hasPathSum(TreeNode root, int sum) {
+        if (root == null) return false;
+        hasPathSum_dfs(root, sum);
+        return ans;
+    }
+
+    private void hasPathSum_dfs(TreeNode root, int sum) {
+        if (root == null) return;
+        if (root.left == null && root.right == null) {
+            if (sum == root.val) {
+                ans = true;
+            }
+        }
+        hasPathSum_dfs(root.left, sum - root.val);
+        hasPathSum_dfs(root.right, sum - root.val);
+    }
+
+    // id 面试题 04.12 求出和为K的路径数 不一定从根节点开始
+    // 深度优先搜索
+    // 每一个都使用dfs
+    // 主函数遍历二叉树
+    // helper函数dfs
+    private int cnt = 0;
+
+    public void pathSum(TreeNode root, int sum) {
+        if (root == null) return;
+        pathSum_dfs(root, sum);
+        pathSum(root.left, sum);
+        pathSum(root.right, sum);
+    }
+
+    private void pathSum_dfs(TreeNode root, int sum) {
+        if (root == null) return;
+        // 不要判断是否叶子节点
+        // if (root.left == null && root.right == null)
+        if (root.val == sum) {
+            cnt++;
+        }
+        pathSum_dfs(root.left, sum - root.val);
+        pathSum_dfs(root.right, sum - root.val);
+    }
+
+    // id 113 求出和为K的路径 返回路径数组
+    // 只从根节点开始
+    // 到叶子节点
+    // 外层从根节点开始
+    // 内层dfs
+    public List<List<Integer>> pathSum_113(TreeNode root, int sum) {
+        if (root == null) return new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> tmp = new ArrayList<>();
+        pathSum_113_dfs(root, sum, res, tmp);
+        return res;
+    }
+
+    private void pathSum_113_dfs(TreeNode root, int sum, List<List<Integer>> res, List<Integer> tmp) {
+        if (root == null) return;
+        tmp.add(root.val);
+        if (root.left == null && root.right == null) {
+            if (root.val == sum) {
+                res.add(new ArrayList<>(tmp));
+            }
+        }
+        pathSum_113_dfs(root.left, sum - root.val, res, tmp);
+        pathSum_113_dfs(root.right, sum - root.val, res, tmp);
+        tmp.remove(tmp.size() - 1);
+    }
+
 
 }

@@ -425,23 +425,9 @@ public class Tag_Array {
     }
 
     // id 56
+    // 合并区间
     public int[][] merge(int[][] intervals) {
-        if (intervals.length == 0) return new int[][]{};
-        Arrays.sort(intervals, (o1, o2) -> o1[0] - o2[0]);
-
-        int[][] res = new int[intervals.length][2];
-        res[0] = intervals[0];
-        int j = 0;
-
-        for (int i = 1; i < intervals.length; i++) {
-            if (res[j][1] >= intervals[i][0]) {
-                res[j][1] = Math.max(res[j][1], intervals[i][1]);
-            } else {
-                res[++j] = intervals[i];
-            }
-        }
-
-        return Arrays.copyOf(res, j + 1);
+        return null;
     }
 
     // id 238

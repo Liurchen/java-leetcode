@@ -1,8 +1,6 @@
 package com.java.leetcode;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class Tag_LinkedList {
 
@@ -43,38 +41,46 @@ public class Tag_LinkedList {
         return l3;
     }
 
+    // id 面试题 25
+    // id 21
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if (l1 == null && l2 == null) {
-            return null;
-        }
+        if (l1 == null) return l2;
+        if (l2 == null) return l1;
         ListNode l3 = new ListNode(0);
-
-        ListNode p1 = l1;
-        ListNode p2 = l2;
-        ListNode p3 = l3;
-
-        while (p1 != null || p2 != null) {
-            if (p1 == null) {
-                p3.val = p2.val;
-                p2 = p2.next;
-            } else if (p2 == null) {
-                p3.val = p1.val;
-                p1 = p1.next;
-            } else {
-                if (p1.val >= p2.val) {
-                    p3.val = p2.val;
-                    p2 = p2.next;
-                } else {
-                    p3.val = p1.val;
-                    p1 = p1.next;
-                }
-            }
-            if (p1 != null || p2 != null) {
-                p3.next = new ListNode(0);
-                p3 = p3.next;
-            }
+        if (l1.val < l2.val) {
+            l3.val = l1.val;
+            l1 = l1.next;
+        } else {
+            l3.val = l2.val;
+            l2 = l2.next;
         }
-
+        ListNode l3ptr = l3;
+        while (l1 != null || l2 != null) {
+            ListNode tmp = new ListNode(0);
+            if (l1 == null) {
+                tmp.val = l2.val;
+                l2 = l2.next;
+                l3ptr.next = tmp;
+                l3ptr = l3ptr.next;
+                continue;
+            }
+            if (l2 == null) {
+                tmp.val = l1.val;
+                l1 = l1.next;
+                l3ptr.next = tmp;
+                l3ptr = l3ptr.next;
+                continue;
+            }
+            if (l1.val < l2.val) {
+                tmp.val = l1.val;
+                l1 = l1.next;
+            } else {
+                tmp.val = l2.val;
+                l2 = l2.next;
+            }
+            l3ptr.next = tmp;
+            l3ptr = l3ptr.next;
+        }
         return l3;
     }
 
@@ -234,5 +240,37 @@ public class Tag_LinkedList {
         }
         assert slow != null;
         return slow.val;
+    }
+
+    // id 面试题 24
+    // id 206
+    // 反转链表
+    public ListNode reverseList(ListNode head) {
+        return reverseListRecursion(head);
+    }
+
+    // 不太懂递归的解法
+    private ListNode reverseListRecursion(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode node = reverseListRecursion(head.next);
+        head.next.next = head;
+        head.next = null;
+        return node;
+    }
+
+    private ListNode reverseListIteration(ListNode head) {
+        if (head == null) return null;
+        Stack<Integer> stack = new Stack<>();
+        while (head != null) {
+            stack.push(head.val);
+            head = head.next;
+        }
+        ListNode res = new ListNode(stack.pop());
+        ListNode copy = res;
+        while (!stack.isEmpty()) {
+            copy.next = new ListNode(stack.pop());
+            copy = copy.next;
+        }
+        return res;
     }
 }
