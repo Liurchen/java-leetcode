@@ -25,8 +25,13 @@ public class Main {
         Tag_Interview interview = new Tag_Interview();
         Tag_Sort sort = new Tag_Sort();
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
+        LRUCache cache = new LRUCache(2);
 
-        System.out.println(contest.minNumberOfFrogs("croakcroa"));
+        TreeNode r = new TreeNode(3);
+        r.left = new TreeNode(1);
+        r.left.right = new TreeNode(2);
+
+        binaryTree.postorderTraversal(r);
     }
 }
 

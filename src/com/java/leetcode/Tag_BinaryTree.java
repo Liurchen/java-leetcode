@@ -13,8 +13,25 @@ public class Tag_BinaryTree {
     }
 
     // id 144
+    // 前序遍历 非递归
+    // 使用栈
+    // 右子树先入栈 因为栈先入后出
     public List<Integer> preorderTraversal(TreeNode root) {
-        return null;
+        if (root == null) return new ArrayList<>();
+        List<Integer> res = new ArrayList<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        stack.offerFirst(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pollFirst();
+            res.add(node.val);
+            if (node.right != null) {
+                stack.offerFirst(node.right);
+            }
+            if (node.left != null) {
+                stack.offerFirst(node.left);
+            }
+        }
+        return res;
     }
 
     public void inOrder(TreeNode t) {
@@ -25,12 +42,39 @@ public class Tag_BinaryTree {
         }
     }
 
+    // id 94
+    // 先一路找到最左的子节点
+    // 然后 栈不空的时候 出栈 以此来访问右孩子
+    public List<Integer> inorderTraversal(TreeNode root) {
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode p = root;
+        List<Integer> res = new ArrayList<>();
+        while (p != null || !stack.isEmpty()) {
+            while (p != null) {
+                stack.offerFirst(p);
+                p = p.left;
+            }
+            if (!stack.isEmpty()) {
+                p = stack.pollFirst();
+                res.add(p.val);
+                p = p.right;
+            }
+        }
+        return res;
+    }
+
     public void postOrder(TreeNode t) {
         if (t != null) {
             postOrder(t.left);
             postOrder(t.right);
             System.out.println(t.val);
         }
+    }
+
+    // id 145
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+        return res;
     }
 
     public void levelOrder(TreeNode t) {
@@ -351,31 +395,20 @@ public class Tag_BinaryTree {
     }
 
     // id 590
-    // TBD
-    public List<Integer> postorder_590(Node root) {
-        if (root == null) return new ArrayList<>();
-        List<List<Integer>> result = new ArrayList<>();
-        Queue<Node> queue = new LinkedList<>();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            List<Integer> tmpArr = new ArrayList<>();
-            while (size > 0) {
-                Node tmp = queue.poll();
-                assert tmp != null;
-                tmpArr.add(tmp.val);
-                size--;
-                for (Node child : tmp.children) {
-                    queue.offer(child);
-                }
-            }
-            result.add(tmpArr);
+    public List<Integer> postorder(Node root) {
+        List<Integer> res_pre = new ArrayList<>();
+        if (root == null)
+            return res_pre;
+        Stack<Node> s = new Stack<>();
+        s.push(root);
+        while (!s.isEmpty()) {
+            Node n = s.pop();
+            res_pre.add(n.val);
+            for (Node node : n.children)
+                s.push(node);
         }
-        List<Integer> res = new ArrayList<>();
-        for (int i = result.size() - 1; i >= 0; i--) {
-            res.addAll(result.get(i));
-        }
-        return res;
+        Collections.reverse(res_pre);
+        return res_pre;
     }
 
     // id 面试题 54
