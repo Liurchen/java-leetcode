@@ -1,5 +1,7 @@
 package com.java.leetcode;
 
+import java.util.Arrays;
+
 public class Tag_Sort {
 
     // idea
@@ -120,6 +122,96 @@ public class Tag_Sort {
     private void print(int[] nums) {
         for (int num : nums) {
             System.out.println(num);
+        }
+    }
+
+    // id 面试题 40
+    // 最小的K个数
+    // 堆排序 大根堆
+    public int[] getLeastNumbers(int[] arr, int k) {
+        int len = arr.length;
+        buildMaxHeap4getLeastNumbers(arr, len);
+        for (int i = len - 1; i > 0; i--) {
+            swap(arr, 0, i);
+            len--;
+            adjustMaxHeap4getLeastNumbers(arr, 0, len);
+        }
+        return Arrays.copyOf(arr, k);
+    }
+
+    private void buildMaxHeap4getLeastNumbers(int[] arr, int len) {
+        for (int i = (len >> 1) - 1; i >= 0; i--) {
+            adjustMaxHeap4getLeastNumbers(arr, i, len);
+        }
+    }
+
+    private void adjustMaxHeap4getLeastNumbers(int[] arr, int i, int len) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int max = i;
+        if (left < len && arr[left] > arr[max]) {
+            max = left;
+        }
+        if (right < len && arr[right] > arr[max]) {
+            max = right;
+        }
+        if (max != i) {
+            swap(arr, max, i);
+            adjustMaxHeap4getLeastNumbers(arr, max, len);
+        }
+    }
+
+    // id 1046
+    // 大顶堆
+    public int lastStoneWeight(int[] stones) {
+        int len = stones.length;
+        if (len == 0) return 0;
+        if (len == 1) return stones[0];
+        if (len == 2) return Math.abs(stones[0] - stones[1]);
+        int nonZero = len;
+        buildMaxHeap4lastStoneWeight(stones, len);
+        while (true) {
+            if (nonZero == 0) {
+                return 0;
+            } else if (nonZero == 1) {
+                return stones[0];
+            } else {
+                int i = 0;
+                int left = 1;
+                int right = 2;
+                if (stones[left] > stones[right]) {
+                    stones[i] = stones[i] - stones[left];
+                    stones[left] = 0;
+                } else {
+                    stones[i] = stones[i] - stones[right];
+                    stones[right] = 0;
+                }
+                nonZero--;
+                if (stones[i] == 0) nonZero--;
+                buildMaxHeap4lastStoneWeight(stones, len);
+            }
+        }
+    }
+
+    private void buildMaxHeap4lastStoneWeight(int[] nums, int len) {
+        for (int i = (len >> 1) - 1; i >= 0; i--) {
+            adjustMaxHeap4lastStoneWeight(nums, i, len);
+        }
+    }
+
+    private void adjustMaxHeap4lastStoneWeight(int[] nums, int i, int len) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int max = i;
+        if (left < len && nums[left] > nums[max]) {
+            max = left;
+        }
+        if (right < len && nums[right] > nums[max]) {
+            max = right;
+        }
+        if (max != i) {
+            swap(nums, max, i);
+            adjustMaxHeap4lastStoneWeight(nums, max, len);
         }
     }
 

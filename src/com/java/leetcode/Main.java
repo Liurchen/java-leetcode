@@ -27,6 +27,7 @@ public class Main {
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
         LRUCache cache = new LRUCache(2);
 
+        sort.lastStoneWeight(new int[]{2, 7, 4, 1, 8, 1});
     }
 }
 
