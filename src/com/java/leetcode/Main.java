@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Main {
 
-    public static <K, V> void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
 
         Tag_Array array = new Tag_Array();
         Tag_LinkedList linkedList = new Tag_LinkedList();
@@ -27,11 +27,6 @@ public class Main {
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
         LRUCache cache = new LRUCache(2);
 
-        TreeNode r = new TreeNode(3);
-        r.left = new TreeNode(1);
-        r.left.right = new TreeNode(2);
-
-        binaryTree.postorderTraversal(r);
     }
 }
 

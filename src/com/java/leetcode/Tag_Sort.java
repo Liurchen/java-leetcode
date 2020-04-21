@@ -10,9 +10,7 @@ public class Tag_Sort {
             int pre = 0;
             while (pre < i) {
                 if (nums[pre] > nums[i]) {
-                    nums[pre] ^= nums[i];
-                    nums[i] ^= nums[pre];
-                    nums[pre] ^= nums[i];
+                    swap(nums, pre, i);
                 }
                 pre++;
             }
@@ -41,13 +39,81 @@ public class Tag_Sort {
                     min = j;
                 }
             }
-            if (min != i) {
-                // 用异或交换需要注意 两边不能相等
-                // 相等会得到0
-                nums[i] ^= nums[min];
-                nums[min] ^= nums[i];
-                nums[i] ^= nums[min];
-            }
+            swap(nums, min, i);
+        }
+    }
+
+    // idea
+    // 堆排序 升序用大顶堆 降序用小顶堆
+    // 堆是一种完全二叉树: 每个节点的值都大于等于其左右孩子节点的值->大顶堆; 每个节点的值都小于等于其左右孩子节点的值->小顶堆
+    // step1 先构造堆
+    // step2 将堆顶元素与末尾元素交换，然后调整堆，不断反复，直到有序
+    public void heapSort(int[] nums) {
+        int len = nums.length;
+        buildMaxHeap(nums, len);
+        for (int i = len - 1; i > 0; i--) {
+            // 堆顶跟最后元素交换
+            swap(nums, 0, i);
+            // 尾指针--
+            len--;
+            // 调整索引0到尾指针重新为堆
+            adjustMaxHeap(nums, 0, len);
+        }
+        print(nums);
+    }
+
+    private void buildMaxHeap(int[] nums, int len) {
+        for (int i = (len >> 1) - 1; i >= 0; i--) {
+            adjustMaxHeap(nums, i, len);
+        }
+    }
+
+    private void adjustMaxHeap(int[] arr, int i, int len) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int largest = i;
+        if (left < len && arr[left] > arr[largest]) {
+            largest = left;
+        }
+        if (right < len && arr[right] > arr[largest]) {
+            largest = right;
+        }
+        if (largest != i) {
+            swap(arr, i, largest);
+            adjustMaxHeap(arr, largest, len);
+        }
+    }
+
+    // 小顶堆
+    private void buildMinHeap(int[] nums, int len) {
+        for (int i = (len >> 1) - 1; i >= 0; i--) {
+            adjustMinHeap(nums, i, len);
+        }
+    }
+
+    private void adjustMinHeap(int[] nums, int i, int len) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int min = i;
+        if (left < len && nums[min] > nums[left]) {
+            min = left;
+        }
+        if (right < len && nums[min] > nums[right]) {
+            min = right;
+        }
+        if (min != i) {
+            swap(nums, i, min);
+            adjustMinHeap(nums, min, len);
+        }
+
+    }
+
+    private void swap(int[] nums, int i, int j) {
+        // 异或双方不能相等，否则会得到0
+        if (i != j) {
+            nums[i] ^= nums[j];
+            nums[j] ^= nums[i];
+            nums[i] ^= nums[j];
         }
     }
 
