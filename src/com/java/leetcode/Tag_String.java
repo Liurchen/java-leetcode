@@ -13,21 +13,6 @@ public class Tag_String {
         return s;
     }
 
-    public int firstUniqChar(String s) {
-        if (s.length() == 1) return 0;
-        LinkedHashMap<Character, Integer> hm = new LinkedHashMap<>();
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-            hm.merge(ch, 1, Integer::sum);
-        }
-        for (char ch : hm.keySet()) {
-            if (hm.get(ch) == 1) {
-                return s.indexOf(ch);
-            }
-        }
-        return -1;
-    }
-
     public int countSegments(String s) {
         return s.split(" ").length;
     }
@@ -161,6 +146,92 @@ public class Tag_String {
             }
         }
         return len;
+    }
+
+    // id 451
+    // 字符出现的频率排序
+    public String frequencySort(String s) {
+        int[] chs = new int[127];
+        for (char ch : s.toCharArray()) {
+            chs[ch]++;
+        }
+        int maxCount = 0;
+        StringBuilder sb = new StringBuilder();
+        while (true) {
+            //记录出现最大次数的索引位置
+            int idx = 0;
+            for (int i = 0; i < 127; i++) {
+                if (chs[i] > maxCount) {
+                    maxCount = chs[i];
+                    idx = i;
+                }
+            }
+            //如果全部为 0，那么表示添加完毕，退出循环
+            if (maxCount == 0) {
+                break;
+            }
+            //次数置 0
+            chs[idx] = 0;
+            //索引位置同时也是字符大小，因此直接转为 (char) 即可
+            while (maxCount-- > 0) {
+                sb.append((char) idx);
+            }
+            maxCount = 0;
+        }
+        return sb.toString();
+    }
+
+    // id 面试题 01 06
+    // 滑动窗口
+    public String compressString(String S) {
+        if (S.equals("")) return "";
+        if (S.length() == 1) return S;
+        int head = 0, tail = 0;
+        StringBuilder sb = new StringBuilder();
+        while (head < S.length()) {
+            char tmp = S.charAt(head);
+            int num = 0;
+            while (tail < S.length()) {
+                if (S.charAt(tail) == tmp) {
+                    num++;
+                    tail++;
+                } else {
+                    head = tail;
+                    break;
+                }
+            }
+            sb.append(tmp);
+            sb.append(num);
+            if (tail == S.length()) {
+                break;
+            }
+        }
+        return sb.length() >= S.length() ? S : sb.toString();
+    }
+
+    // id 面试题 50
+    // 第一个只出现一次的字符
+    public char firstUniqChar(String s) {
+        if (s.equals("")) return ' ';
+        char[] chs = new char[s.length()];
+        for (int i = 0; i < s.length(); i++) {
+            chs[i] = s.charAt(i);
+        }
+        Map<Character, Integer> map = new LinkedHashMap<>();
+        List<Character> once = new ArrayList<>();
+        for (char ch : chs) {
+            if (!map.containsKey(ch)) {
+                map.put(ch, 1);
+                once.add(ch);
+            } else {
+                map.put(ch, map.get(ch) + 1);
+                for (int j = 0; j < once.size(); j++) {
+                    if (once.get(j) == ch) once.remove(j);
+                }
+            }
+        }
+        if (once.size() == 0) return ' ';
+        return once.get(0);
     }
 
 }

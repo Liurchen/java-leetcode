@@ -278,4 +278,22 @@ public class Tag_DP {
         return dp[amount] != amount + 1 ? dp[amount] : -1;
     }
 
+    // id 面试题 08 11
+    public int waysToChange(int n) {
+        final int MOD = 1000000007;
+        int[] dp = new int[n + 1];
+        int[] coins = new int[]{1, 5, 10, 25};
+        dp[0] = 1;
+        // dp[i]代表 组成i面值的表示法数
+        for (int coin : coins) {
+            for (int i = coin; i <= n; i++) {
+                // dp[6] = dp[6] + dp[6-1] + dp[6-5]
+                // dp[11] = dp[11] + dp[11-10] + dp[11-5] + dp[11-1]
+                dp[i] += dp[i - coin];
+                dp[i] %= MOD;
+            }
+        }
+        return dp[n];
+    }
+
 }

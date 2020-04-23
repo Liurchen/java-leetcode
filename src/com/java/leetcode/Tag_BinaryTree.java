@@ -73,8 +73,7 @@ public class Tag_BinaryTree {
 
     // id 145
     public List<Integer> postorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        return res;
+        return new ArrayList<>();
     }
 
     public void levelOrder(TreeNode t) {
@@ -640,6 +639,18 @@ public class Tag_BinaryTree {
         pathSum_113_dfs(root.left, sum - root.val, res, tmp);
         pathSum_113_dfs(root.right, sum - root.val, res, tmp);
         tmp.remove(tmp.size() - 1);
+    }
+
+    // id 面试题 04 05
+    // 检查是否为合法二叉搜索树
+    // 考虑递归
+    public boolean isValidBST(TreeNode root) {
+        return isValidBST(root, Long.MAX_VALUE, Long.MIN_VALUE);
+    }
+
+    private boolean isValidBST(TreeNode node, long max, long min) {
+        if (node == null) return true;
+        return node.val < max && node.val > min && isValidBST(node.left, node.val, min) && isValidBST(node.right, max, node.val);
     }
 
 

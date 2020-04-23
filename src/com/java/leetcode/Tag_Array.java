@@ -568,4 +568,12 @@ public class Tag_Array {
         return max;
     }
 
+    // id 1248
+    // 双指针
+    // 应该用滑动窗口
+    // TBD
+    public int numberOfSubArrays(int[] nums, int k) {
+        return 0;
+    }
+
 }

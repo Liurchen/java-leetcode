@@ -1,5 +1,8 @@
 package com.java.leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Tag_Bitwise {
 
     public int countOne(int n) {
@@ -68,5 +71,43 @@ public class Tag_Bitwise {
 
         }
         return step;
+    }
+
+    // id 709
+    public String toLowerCase(String str) {
+        char[] ch = new char[str.length()];
+        for (int i = 0; i < str.length(); i++) {
+            ch[i] = (char) (str.charAt(i) | 32);
+        }
+        StringBuilder res = new StringBuilder();
+        for (char c : ch) {
+            res.append(c);
+        }
+        return res.toString();
+    }
+
+    // id 面试题 01 02
+    public boolean CheckPermutation(String s1, String s2) {
+        if (s1.length() != s2.length()) return false;
+        if (s1.equals("")) return true;
+        Map<Character, Integer> map1 = new HashMap<>();
+        Map<Character, Integer> map2 = new HashMap<>();
+        for (int i = 0; i < s1.length(); i++) {
+            if (!map1.containsKey(s1.charAt(i))) {
+                map1.put(s1.charAt(i), 1);
+            } else {
+                map1.put(s1.charAt(i), map1.get(s1.charAt(i)) + 1);
+            }
+            if (!map2.containsKey(s2.charAt(i))) {
+                map2.put(s2.charAt(i), 1);
+            } else {
+                map2.put(s2.charAt(i), map2.get(s2.charAt(i)) + 1);
+            }
+        }
+        if (map1.size() != map2.size()) return false;
+        for (Character key : map1.keySet()) {
+            if (!map1.get(key).equals(map2.get(key))) return false;
+        }
+        return true;
     }
 }
