@@ -234,4 +234,146 @@ public class Tag_String {
         return once.get(0);
     }
 
+    public String biggerInteger(String s) {
+        int sum = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isDigit(s.charAt(i))) {
+                sum += Integer.parseInt("" + s.charAt(i));
+            }
+        }
+        if (s.contains(".")) {
+            // 去掉小数部分
+            s = s.substring(0, s.indexOf("."));
+        }
+
+        int newSum = 0;
+        do {
+            s = add(s);
+            newSum = 0;
+            for (int i = 0; i < s.length(); i++) {
+                if (Character.isDigit(s.charAt(i))) {
+                    newSum += Integer.parseInt("" + s.charAt(i));
+                }
+            }
+        } while (newSum != sum);
+
+        System.out.println(s);
+
+        return s;
+    }
+
+    public String biggerNum(String s) {
+        if (s.length() == 0) return "";
+        if (s.length() == 1) {
+            if (s.equals("0")) return "";
+            return Integer.parseInt(s) + 9 + "";
+        }
+        List<Integer> nums = new ArrayList<>(s.length());
+        int oSum = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int tmp = Integer.parseInt(s.charAt(i) + "");
+            oSum += tmp;
+            nums.add(tmp);
+        }
+        // 末尾减1
+        // 倒数第二位+1
+        int nSum = 0;
+        int tail = nums.size() - 1;
+        int secondTail = tail - 1;
+        while (oSum != nSum) {
+            int last = nums.get(tail);
+            int secondLast = nums.get(secondTail);
+            if (last != 0 && secondLast != 9) {
+                nums.set(tail, last - 1);
+                nums.set(secondTail, secondLast + 1);
+                nSum = cnt(nums);
+            } else if (last != 0) {
+                nums.set(tail, last - 1);
+                int p = secondLast - 1;
+                boolean set = false;
+                while (p >= 0) {
+                    if (nums.get(p) != 9) {
+                        nums.set(p, nums.get(p) + 1);
+                        set = true;
+                    }
+                    p--;
+                }
+                if (!set) {
+                    // 多一位，然后排序
+                    nums.add(0, 1);
+                    Collections.sort(nums);
+                }
+                nSum = cnt(nums);
+            }
+        }
+        return "";
+    }
+
+    private int cnt(List<Integer> nums) {
+        int sum = 0;
+        for (int n : nums) {
+            sum += n;
+        }
+        return sum;
+    }
+
+    private String add(String s1) {
+        //先将输入的两个串逆序生成字符数组
+        char[] a = new StringBuilder(s1).reverse().toString().toCharArray();
+        char[] b = new StringBuilder("1").reverse().toString().toCharArray();
+
+        //结果数组的最大长度为两个数组中长度较大的那个再加1
+        int lenA = a.length;
+        int lenB = b.length;
+        int maxlen = Math.max(lenA, lenB);
+        int[] result = new int[maxlen + 1];
+
+        //如果当前位超过了最大的长度，补0即可
+        for (int i = 0; i < maxlen + 1; i++) {
+            int aint = i < lenA ? (a[i] - '0') : 0;
+            int bint = i < lenB ? (b[i] - '0') : 0;
+            result[i] = aint + bint;
+        }
+
+        //遍历结果数组，大于10进位，当前位取10的模
+        for (int i = 0; i < result.length; i++) {
+            if (result[i] >= 10) {
+                result[i + 1] += result[i] / 10;
+                result[i] %= 10;
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        if (result[maxlen] != 0) {
+            sb.append(result[maxlen]);
+        }
+
+        for (int i = maxlen - 1; i >= 0; i--) {
+            sb.append(result[i]);
+        }
+        return sb.toString();
+    }
+
+    // id 771
+    public int numJewelsInStones(String J, String S) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < S.length(); i++) {
+            Character ch = S.charAt(i);
+            if (!map.containsKey(ch)) {
+                map.put(ch, 1);
+            } else {
+                int tmp = map.get(ch);
+                map.put(ch, tmp + 1);
+            }
+        }
+        int sum = 0;
+        for (int i = 0; i < J.length(); i++) {
+            if (map.containsKey(J.charAt(i))) {
+                sum += map.get(J.charAt(i));
+            }
+        }
+        return sum;
+    }
+
+
 }

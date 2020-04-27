@@ -576,4 +576,91 @@ public class Tag_Array {
         return 0;
     }
 
+    // id 1281
+    public int subtractProductAndSum(int n) {
+        List<Integer> nums = new ArrayList<>();
+        while (n > 0) {
+            nums.add(n % 10);
+            n /= 10;
+        }
+        int sum = 0;
+        int prd = 1;
+        for (Integer num : nums) {
+            sum += num;
+            prd *= num;
+            System.out.println(num);
+        }
+        return prd - sum;
+    }
+
+    // id 1313
+    public int[] decompressList(int[] nums) {
+        if (nums.length % 2 != 0) return null;
+        List<Integer> res = new ArrayList<>();
+        for (int i = 1; i < nums.length + 1; i++) {
+            if (i % 2 != 0) {
+                int times = nums[i - 1];
+                while (times > 0) {
+                    res.add(nums[i]);
+                    times--;
+                }
+            }
+        }
+        int[] result = new int[res.size()];
+        for (int i = 0; i < res.size(); i++) {
+            result[i] = res.get(i);
+        }
+        return result;
+    }
+
+    // id 1295
+    public int findNumbers(int[] nums) {
+        int cnt = 0;
+        for (int num : nums) {
+            String tmp = Integer.valueOf(num).toString();
+            if (tmp.length() % 2 == 0) {
+                cnt++;
+            }
+        }
+        return cnt;
+    }
+
+    // id 1365
+    // 前缀和
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+        //桶计数算法
+        int[] bucket = new int[101];
+        for (int i : nums) {
+            bucket[i]++;
+        }
+        for (int i = 1; i < bucket.length; i++) {
+            // 前缀和
+            // 这时的bucket[i]代表着 所有小于i的数的出现次数之和
+            bucket[i] += bucket[i - 1];
+        }
+        for (int i = 0; i < nums.length; i++) {
+            // bucket[nums[i]-1] 把自己贡献的那个减掉
+            nums[i] = nums[i] > 0 ? bucket[nums[i] - 1] : 0;
+        }
+        Util.print(nums);
+        return nums;
+    }
+
+    private int binarySearch(int[] nums, int target) {
+        int high = nums.length - 1;
+        int low = 0;
+        int mid = 0;
+        while (high > low) {
+            mid = (high - low) >> 1 + low;
+            if (nums[mid] > target) {
+                high = mid - 1;
+            } else if (nums[mid] < target) {
+                low = mid + 1;
+            } else {
+                break;
+            }
+        }
+        return mid;
+    }
+
 }

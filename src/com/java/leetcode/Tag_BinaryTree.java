@@ -653,5 +653,15 @@ public class Tag_BinaryTree {
         return node.val < max && node.val > min && isValidBST(node.left, node.val, min) && isValidBST(node.right, max, node.val);
     }
 
+    // id 111
+    // 二叉树的最小深度
+    public int minDepth(TreeNode root) {
+        Map<Integer, Integer> map = new HashMap<>();
+        if (root == null) return 0;
+        if (root.left == null && root.right != null) return 1 + minDepth(root.right);
+        if (root.right == null && root.left != null) return 1 + minDepth(root.left);
+        return 1 + Math.min(minDepth(root.left), minDepth(root.right));
+    }
+
 
 }

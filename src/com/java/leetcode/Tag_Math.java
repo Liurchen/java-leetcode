@@ -78,4 +78,12 @@ public class Tag_Math {
         // 否则先手获胜
         return n % 4 != 0;
     }
+
+    // id 面试题 64
+    // 不能用乘除法
+    // 用递归
+    public int sumNums(int n) {
+        if (n == 1) return n;
+        return n + sumNums(n - 1);
+    }
 }

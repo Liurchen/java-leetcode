@@ -105,4 +105,90 @@ public class LeetcodeWeeklyContest {
         }
         return count;
     }
+
+    // 周赛 186
+    // ac
+    public int maxScore(String s) {
+        int res = 0, cnt1 = 0, cnt0 = 0;        // cnt1统计右边1的个数，同理cnt0左边0的个数
+        for (int i = 0; i < s.length(); i++) {
+            cnt1 += s.charAt(i) - '0';            // 先统计1的个数
+        }                                       // 由于左右区域的数至少为1，所以i不能等于len-1
+        for (int i = 0; i < s.length() - 1; i++) {  // 点i分为左右两个区域
+            if (s.charAt(i) == '0') cnt0++;      // 遇到01就统计，动态更新左右区域01个数
+            else cnt1--;
+            res = Math.max(res, cnt0 + cnt1);
+        }
+        return res;
+    }
+
+    // id 5393
+    // 前缀和
+    public int maxScore(int[] cardPoints, int k) {
+        int n = cardPoints.length, scoreR = 0, scoreL = 0;
+        for (int i = 0; i < k; i++)
+            scoreL += cardPoints[i];
+        int res = scoreL;
+        for (int l = 1; l <= k; l++) {
+            scoreL -= cardPoints[k - l];
+            scoreR += cardPoints[n - l];
+            res = Math.max(res, scoreR + scoreL);
+        }
+        return res;
+    }
+
+    // id 1424
+    public int[] findDiagonalOrder(List<List<Integer>> nums) {
+        if (nums.size() == 0) return null;
+        List<Integer> res = new ArrayList<>();
+        int row = nums.size();
+        for (List<Integer> num : nums) {
+            if (num.size() > row) row = num.size();
+        }
+        int rowIdx = 1;
+        while (rowIdx < row + 1) {
+            int l = rowIdx;
+            int r = 1;
+            if (l == 1) {
+                if (l - 1 < nums.size() && r - 1 < nums.get(l - 1).size()) {
+                    res.add(nums.get(l - 1).get(r - 1));
+                    System.out.println(nums.get(l - 1).get(r - 1));
+                }
+                rowIdx++;
+                continue;
+            }
+            while (r < rowIdx && l > 1) {
+                if (l - 1 < nums.size() && r - 1 < nums.get(l - 1).size()) {
+                    res.add(nums.get(l - 1).get(r - 1));
+                    System.out.println(nums.get(l - 1).get(r - 1));
+                }
+                r++;
+                l--;
+            }
+            if (l - 1 < nums.size() && r - 1 < nums.get(l - 1).size()) {
+                res.add(nums.get(l - 1).get(r - 1));
+                System.out.println(nums.get(l - 1).get(r - 1));
+            }
+            rowIdx++;
+        }
+        int s = rowIdx - 1;
+        int e = 2;
+        while (e < row + 1) {
+            int l = rowIdx - 1;
+            int r = e;
+            while (r < s + 1) {
+                if (l - 1 < nums.size() && r - 1 < nums.get(l - 1).size()) {
+                    res.add(nums.get(l - 1).get(r - 1));
+                    System.out.println(nums.get(l - 1).get(r - 1));
+                }
+                l--;
+                r++;
+            }
+            e++;
+        }
+        int[] result = new int[res.size()];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = res.get(i);
+        }
+        return result;
+    }
 }
