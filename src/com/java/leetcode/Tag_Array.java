@@ -663,4 +663,26 @@ public class Tag_Array {
         return mid;
     }
 
+    // id 560
+    // 和为k的子数组
+    public int subarraySum(int[] nums, int k) {
+        int[] preSum = new int[nums.length + 1];
+        preSum[0] = 0;
+        for (int i = 0; i < nums.length; i++) {
+            preSum[i + 1] = preSum[i] + nums[i];
+        }
+
+        // nums[i] 到 nums[j] 的和就是 preSum[j+1] - preSum[i]
+        int cnt = 0;
+        for (int i = 1; i <= nums.length; i++) {
+            for (int j = 0; j < i; j++) {
+                // j 到 i-1 的和
+                if (preSum[i] - preSum[j] == k) cnt++;
+            }
+        }
+        return cnt;
+    }
+
+
+
 }

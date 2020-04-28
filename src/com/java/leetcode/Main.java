@@ -4,8 +4,6 @@ import com.sun.source.tree.Tree;
 
 import java.util.*;
 
-import com.ja.leetcode.Son;
-
 public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
@@ -42,10 +40,8 @@ public class Main {
 //        matrix.add(r5);
 //        contest.findDiagonalOrder(matrix);
 
-        contest.maxScore(new int[]{1, 2, 3, 4, 5, 6, 1}, 3);
+        contest.getHappyString(3, 2);
 
-        Son s = new Son();
-        System.out.println(s.a);
     }
 }
 

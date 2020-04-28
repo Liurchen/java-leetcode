@@ -4,6 +4,94 @@ import java.util.*;
 
 public class LeetcodeWeeklyContest {
 
+    // 周赛 184
+    // ac 前缀和
+    public int minStartValue(int[] nums) {
+        int[] preSum = new int[nums.length + 1];
+        preSum[0] = 0;
+        for (int i = 0; i < nums.length; i++) {
+            preSum[i + 1] = preSum[i] + nums[i];
+        }
+        int min = 0;
+        for (int sum : preSum) {
+            if (min > sum) min = sum;
+        }
+        return Math.abs(min) + 1;
+    }
+
+    // id 1414
+    // 和为 K 的最少斐波那契数字数目
+    public int findMinFibonacciNumbers(int k) {
+        // 有个问题 这个dp数组设为多大才行？？？
+        int[] dp = new int[1000];
+        dp[0] = 1;
+        dp[1] = 1;
+        int idx = 2;
+        while (true) {
+            dp[idx] = dp[idx - 1] + dp[idx - 2];
+            if (dp[idx] > k) break;
+            idx++;
+        }
+        int num = 0;
+        for (int i = idx; i >= 0; i--) {
+            if (k >= dp[i]) {
+                k -= dp[i];
+                num++;
+            }
+            if (k == 0) return num;
+        }
+        return num;
+    }
+
+    // id 1415
+    // 长度为 n 的开心字符串中字典序第 k 小的字符串
+    // 回溯问题
+    public String getHappyString(int n, int k) {
+        String[] abc = new String[]{"a", "b", "c"};
+        List<String> result = new ArrayList<>();
+        int[] visited = new int[]{1, 1, 1};
+        for (int i = 0; i < abc.length; i++) {
+            StringBuilder path = new StringBuilder(abc[i]);
+            for (int j = 0; j < abc.length; j++) {
+                if (j != i) {
+                    visited[j] = 1;
+                } else {
+                    visited[j] = 0;
+                }
+            }
+            backTrack(path, visited, n, result, abc);
+        }
+        return "";
+    }
+
+    private void backTrack(StringBuilder path, int[] visited, int n, List<String> result, String[] abc) {
+        if (path.length() == n) {
+            result.add(path.toString());
+            return;
+        }
+        for (int i = 0; i < abc.length; i++) {
+            if (visited[i] != 0) {
+                path.append(abc[i]);
+                for (int j = 0; j < abc.length; j++) {
+                    if (j != i) {
+                        visited[j] = 1;
+                    } else {
+                        visited[j] = 0;
+                    }
+                }
+                backTrack(path, visited, n, result, abc);
+                if (path.charAt(path.length() - 1) == 'a') {
+                    visited[0] = 1;
+                } else if (path.charAt(path.length() - 1) == 'b') {
+                    visited[1] = 1;
+                } else {
+                    visited[2] = 1;
+                }
+                path.deleteCharAt(path.length() - 1);
+            }
+        }
+    }
+
     // 周赛 185
     // ac
     public String reformat(String s) {
