@@ -1,7 +1,6 @@
 package com.java.leetcode;
 
-import java.util.Arrays;
-import java.util.Map;
+import java.util.*;
 
 public class Tag_DP {
 
@@ -294,6 +293,12 @@ public class Tag_DP {
             }
         }
         return dp[n];
+    }
+
+    // id 120 三角形最小路径和
+    public int minimumTotal(List<List<Integer>> triangle) {
+        // dp[i][j] 代表什么
+        return 0;
     }
 
 }

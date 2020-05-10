@@ -7,7 +7,6 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-
         Tag_Array array = new Tag_Array();
         Tag_LinkedList linkedList = new Tag_LinkedList();
         Tag_Queue queue = new Tag_Queue();
@@ -27,23 +26,7 @@ public class Main {
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
         LRUCache cache = new LRUCache(2);
 
-//        List<Integer> r1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
-//        List<Integer> r2 = new ArrayList<>(Arrays.asList(6, 7));
-//        List<Integer> r3 = new ArrayList<>(Collections.singletonList(8));
-//        List<Integer> r4 = new ArrayList<>(Arrays.asList(9, 10, 11));
-//        List<Integer> r5 = new ArrayList<>(Arrays.asList(12, 13, 14, 15, 16));
-//        List<List<Integer>> matrix = new ArrayList<>();
-//        matrix.add(r1);
-//        matrix.add(r2);
-//        matrix.add(r3);
-//        matrix.add(r4);
-//        matrix.add(r5);
-//        contest.findDiagonalOrder(matrix);
-
-        contest.getHappyString(3, 2);
-
+        System.out.println(3 ^ 1);
     }
 }
-
-
 

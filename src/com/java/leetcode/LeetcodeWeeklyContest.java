@@ -279,4 +279,111 @@ public class LeetcodeWeeklyContest {
         }
         return result;
     }
+
+    // 周赛 187
+    // ac
+    public String destCity(List<List<String>> paths) {
+        List<String> st = new ArrayList<>();
+        List<String> end = new ArrayList<>();
+        for (List<String> pair : paths) {
+            st.add(pair.get(0));
+            end.add(pair.get(1));
+        }
+        end.removeIf(st::contains);
+        return end.get(0);
+    }
+
+    // ac
+    public boolean kLengthApart(int[] nums, int k) {
+        if (nums.length == 1) return true;
+        if (k == 0) return true;
+        if (k >= nums.length) return false;
+        int idx = 0;
+        while (idx < nums.length) {
+            if (nums[idx] == 1) {
+                int n = k;
+                int p = idx + 1;
+                if (p == nums.length) return true;
+                while (n > 0) {
+                    if (nums[p] == 0) {
+                        n--;
+                        p++;
+                    } else {
+                        return false;
+                    }
+                }
+                idx = p;
+            } else {
+                idx++;
+            }
+        }
+        return true;
+    }
+
+    // 数组越界
+    public int longestSubarray(int[] nums, int limit) {
+        if (nums.length == 1) return 1;
+        int head = 0;
+        int tail = 1;
+        int min = -1, max = -1;
+        if (nums[head] >= nums[tail]) {
+            max = head;
+            min = tail;
+        } else {
+            max = tail;
+            min = head;
+        }
+        int maxLen = -1;
+        while (tail < nums.length) {
+            if (nums[max] - nums[min] > limit) {
+                head++;
+                if (head == tail) tail++;
+                min = head;
+                max = tail;
+                for (int i = head; i <= tail; i++) {
+                    if (nums[i] >= nums[max]) max = i;
+                    if (nums[i] <= nums[min]) min = i;
+                }
+            } else {
+                tail++;
+                if (tail - head > maxLen) maxLen = tail - head;
+                if (tail == nums.length) break;
+                if (nums[tail] >= nums[max]) max = tail;
+                if (nums[tail] <= nums[min]) min = tail;
+            }
+        }
+        return maxLen;
+    }
+
+    // 周赛 188
+    // ac
+    public List<String> buildArray(int[] target, int n) {
+        int[] nums = new int[n + 1];
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = i;
+        }
+        int idx = 0;
+        List<String> res = new ArrayList<>();
+        for (int i = 1; i < nums.length; i++) {
+            if (idx >= target.length) return res;
+            if (target[idx] == nums[i]) {
+                res.add("Push");
+                idx++;
+            } else {
+                res.add("Push");
+                res.add("Pop");
+            }
+        }
+        return res;
+    }
+
+    public int countTriplets(int[] arr) {
+        if (arr.length < 2) return 0;
+        int i = 0;
+        int j = 1;
+        int k = 1;
+
+
+        return 0;
+    }
 }
