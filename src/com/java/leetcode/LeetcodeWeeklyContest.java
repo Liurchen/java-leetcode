@@ -386,4 +386,73 @@ public class LeetcodeWeeklyContest {
 
         return 0;
     }
+
+    public String plus(String num1, String num2) {
+        int dig1 = 0;
+        for (int i = 0; i < num1.length(); i++) {
+            int tmp = num1.charAt(i) - '0';
+            dig1 += tmp * Math.pow(3, num1.length() - i - 1);
+        }
+        int dig2 = 0;
+        for (int i = 0; i < num2.length(); i++) {
+            int tmp = num2.charAt(i) - '0';
+            dig2 += tmp * Math.pow(3, num2.length() - i - 1);
+        }
+        int res = dig1 + dig2;
+        List<Integer> list = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        while (res / 3 != 0) {
+            list.add(res % 3);
+            res = res / 3;
+        }
+        list.add(res % 3);
+        for (int i = list.size() - 1; i >= 0; i--) {
+            sb.append(list.get(i));
+        }
+        return sb.toString();
+    }
+
+    public Integer[] find(Integer[] nums) {
+        if (nums.length != 10) return new Integer[]{};
+        Integer[] res = new Integer[3];
+        int sum = 0;
+        for (int i = 0; i < 10; i++) {
+            sum += nums[i];
+        }
+        double avg = ((double) sum) / 10;
+        Arrays.sort(nums);
+        double dis = Math.abs(nums[0] - avg);
+        int idx = 0;
+        for (int i = 1; i < 10; i++) {
+            double tmp = Math.abs(nums[i] - avg);
+            if (tmp < dis) {
+                dis = tmp;
+                idx = i;
+            }
+        }
+        res[0] = nums[idx];
+        if (Math.abs(nums[idx - 1] - avg) > Math.abs(nums[idx + 1] - avg)) {
+            res[1] = nums[idx + 1];
+            res[2] = nums[idx - 1];
+        } else {
+            res[1] = nums[idx - 1];
+            res[2] = nums[idx + 1];
+        }
+        return res;
+    }
+
+    public int analysis(String expression) {
+        
+        return 0;
+    }
 }
+
+
+
+
+
+
+
+
+
+

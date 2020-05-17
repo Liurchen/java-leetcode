@@ -26,7 +26,8 @@ public class Main {
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
         LRUCache cache = new LRUCache(2);
 
-        System.out.println(3 ^ 1);
+        String ex = "10+28-5";
+        contest.analysis(ex);
     }
 }
 
