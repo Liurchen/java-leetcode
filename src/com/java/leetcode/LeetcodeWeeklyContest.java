@@ -440,11 +440,6 @@ public class LeetcodeWeeklyContest {
         }
         return res;
     }
-
-    public int analysis(String expression) {
-        
-        return 0;
-    }
 }
 
 
