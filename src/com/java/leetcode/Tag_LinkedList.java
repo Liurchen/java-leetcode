@@ -102,33 +102,6 @@ public class Tag_LinkedList {
         return head;
     }
 
-    // id 160
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-
-//         * 设链表A不公共部分为a,公共部分为c；链表B不公共部分为b，公共部分为c
-//         * 即链表A：aaccc；链表B：bbbbbbbbbccc  （由题意可知c个数可能为0）
-//         * 在headA处设一个flagA，让它沿着a->c->b移动
-//         * 在headB处设一个flagB，让它沿着b->c->a移动
-//         * 则有：a + b + c = b + c + a（其中由于A和B可能没有公共点，所以c可能为0）
-//         * 所以当flagA == flagB时，此时的节点一定为公共点
-//         *
-//         * @param headA 链表A
-//         * @param headB 链表B
-//         * @return 相交的节点或null
-
-        // 定义两个指针, 第一轮让两个到达末尾的节点指向另一个链表的头部, 最后如果相遇则为交点(在第一轮移动中恰好抹除了长度差)
-        // 两个指针等于移动了相同的距离, 有交点就返回, 无交点就是各走了两条指针的长度
-        if (headA == null || headB == null) return null;
-        ListNode pA = headA, pB = headB;
-        // 在这里第一轮体现在pA和pB第一次到达尾部会移向另一链表的表头
-        // 而第二轮体现在如果pA或pB相交就返回交点, 不相交最后就是null==null
-        while (pA != pB) {
-            pA = pA == null ? headB : pA.next;
-            pB = pB == null ? headA : pB.next;
-        }
-        return pA;
-    }
-
     // id 203
     public ListNode removeElements(ListNode head, int val) {
         if (head == null) return null;
@@ -272,5 +245,32 @@ public class Tag_LinkedList {
             copy = copy.next;
         }
         return res;
+    }
+
+    // id 面试题 18
+    // 删除链表的节点
+    public ListNode deleteNode(ListNode head, int val) {
+        ListNode ptr = new ListNode(-1);
+        ptr.next = head;
+        while (ptr.next != null) {
+            if (ptr.next.val == val) {
+                if (head.val == val) {
+                    head = head.next;
+                    break;
+                }
+                ptr.next = ptr.next.next;
+                break;
+            }
+            ptr = ptr.next;
+        }
+        return head;
+    }
+
+    // id 面试题 52
+    // id 160
+    // 两个链表的第一个公共节点
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
+        return headA;
     }
 }

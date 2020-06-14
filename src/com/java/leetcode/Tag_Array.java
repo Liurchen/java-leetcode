@@ -683,6 +683,22 @@ public class Tag_Array {
         return cnt;
     }
 
-
+    // id 面试题 03
+    // 数组中的重复数字
+    public int findRepeatNumber(int[] nums) {
+        int len = nums.length;
+        for (int i = 0; i < len; i++) {
+            if (nums[i] != i) {
+                if (nums[i] == nums[nums[i]]) {
+                    return nums[i];
+                } else {
+                    int tmp = nums[nums[i]];
+                    nums[nums[i]] = nums[i];
+                    nums[i] = tmp;
+                }
+            }
+        }
+        return 0;
+    }
 
 }
