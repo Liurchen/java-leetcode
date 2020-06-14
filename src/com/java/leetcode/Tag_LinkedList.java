@@ -289,5 +289,13 @@ public class Tag_LinkedList {
         return null;
     }
 
-    
+    public void printLinkedListReverse(ListNode head) {
+        if (head != null) {
+            if (head.next != null) {
+                printLinkedListReverse(head.next);
+            }
+            System.out.println(head.val);
+        }
+    }
+
 }

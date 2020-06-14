@@ -663,5 +663,26 @@ public class Tag_BinaryTree {
         return 1 + Math.min(minDepth(root.left), minDepth(root.right));
     }
 
+    // id 110
+    // id 面试题 55-II
+    // 判断是否平衡二叉树 任意节点左右子树高度差不超过1
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) {
+            return true;
+        } else if (Math.abs(getHeight(root.left) - getHeight(root.right)) <= 1) {
+            return isBalanced(root.left) && isBalanced(root.right);
+        } else {
+            return false;
+        }
+    }
+
+    private int getHeight(TreeNode root) {
+        if (root == null) return 0;
+        return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
+    }
+
+    public Node treeToDoublyList(Node root) {
+        return null;
+    }
 
 }
