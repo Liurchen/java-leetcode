@@ -143,4 +143,11 @@ public class Tag_Stack {
         }
         return res;
     }
+
+    // id 面试题 31
+    // 栈的压入，弹出序列
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+
+        return false;
+    }
 }

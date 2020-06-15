@@ -124,7 +124,9 @@ public class Tag_BinaryTree {
 
     // id 102
     public List<List<Integer>> levelOrder_102(TreeNode root) {
-        if (root == null) return new ArrayList<>();
+        if (root == null) {
+            return new ArrayList<>();
+        }
         List<List<Integer>> result = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
@@ -171,19 +173,27 @@ public class Tag_BinaryTree {
 
     // id 面试题 26 树的子结构
     public boolean isSubStructure(TreeNode A, TreeNode B) {
-        if (A == null || B == null) return false;
+        if (A == null || B == null) {
+            return false;
+        }
         return helper26(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B);
     }
 
     public boolean helper26(TreeNode A, TreeNode B) {
-        if (B == null) return true;
-        if (A == null) return false;
+        if (B == null) {
+            return true;
+        }
+        if (A == null) {
+            return false;
+        }
         return A.val == B.val && helper26(A.left, B.left) && helper26(A.right, B.right);
     }
 
     // id 面试题 32-1
     public int[] levelOrder_32_1(TreeNode root) {
-        if (root == null) return new int[]{};
+        if (root == null) {
+            return new int[]{};
+        }
         List<Integer> res = new ArrayList<>();
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
@@ -206,7 +216,9 @@ public class Tag_BinaryTree {
 
     // id 面试题 32-3
     public List<List<Integer>> levelOrder_32_3(TreeNode root) {
-        if (root == null) return new ArrayList<>();
+        if (root == null) {
+            return new ArrayList<>();
+        }
         List<List<Integer>> result = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
@@ -245,7 +257,9 @@ public class Tag_BinaryTree {
     }
 
     private TreeNode dfs_108(int[] nums, int start, int end) {
-        if (start > end) return null;
+        if (start > end) {
+            return null;
+        }
         int mid = ((end - start) >> 1) + start;
         TreeNode root = new TreeNode(nums[mid]);
         root.left = dfs_108(nums, start, mid - 1);
@@ -259,7 +273,9 @@ public class Tag_BinaryTree {
     public void sumOfLeftLeaves(TreeNode root) {
         if (root != null) {
             // 怎么样是左叶子哦~
-            if (root.left != null && root.left.left == null && root.left.right == null) sum += root.left.val;
+            if (root.left != null && root.left.left == null && root.left.right == null) {
+                sum += root.left.val;
+            }
             System.out.printf("sum: %d\n", sum);
             sumOfLeftLeaves(root.left);
             sumOfLeftLeaves(root.right);
