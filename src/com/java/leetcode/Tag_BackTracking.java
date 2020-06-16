@@ -5,28 +5,37 @@ import java.util.*;
 public class Tag_BackTracking {
 
     // id 46
+    // 标准回溯
+    List<List<Integer>> result_permute = new ArrayList<>();
+
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
         int[] visited = new int[nums.length];
-        backtrack46(path, visited, result, nums);
-        return result;
+        backTrack_permute(nums, path, visited);
+        return result_permute;
     }
 
-    private void backtrack46(List<Integer> path, int[] visited, List<List<Integer>> result, int[] nums) {
+    private void backTrack_permute(int[] nums, List<Integer> path, int[] visited) {
         if (path.size() == nums.length) {
-            result.add(new ArrayList<>(path));
+            result_permute.add(new ArrayList<>(path));
             return;
         }
+
         for (int i = 0; i < nums.length; i++) {
-            if (visited[i] == 1) continue;
+            if (visited[i] == 1) {
+                continue;
+            }
+            // make choice
             path.add(nums[i]);
             visited[i] = 1;
-            backtrack46(path, visited, result, nums);
+
+            // back track
+            backTrack_permute(nums, path, visited);
+
+            // withdraw choice
             path.remove(path.size() - 1);
             visited[i] = 0;
         }
-
     }
 
     // id 17
@@ -90,18 +99,6 @@ public class Tag_BackTracking {
             backtrack784(s, ret, sb, i + 1);
             sb.deleteCharAt(sb.length() - 1);
         }
-    }
-
-    // id 22
-    // 好难
-    public List<String> generateParenthesis(int n) {
-        List<String> result = new ArrayList<>();
-        StringBuilder tmp = new StringBuilder();
-
-        return result;
-    }
-
-    private void backtrack22() {
     }
 
 

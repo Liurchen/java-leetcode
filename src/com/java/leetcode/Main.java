@@ -25,6 +25,8 @@ public class Main {
         Tag_Sort sort = new Tag_Sort();
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
         LRUCache cache = new LRUCache(2);
+
+        array.movingCount(2, 3, 1);
     }
 }
 

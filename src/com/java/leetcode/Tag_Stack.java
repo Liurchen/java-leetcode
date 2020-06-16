@@ -147,7 +147,18 @@ public class Tag_Stack {
     // id 面试题 31
     // 栈的压入，弹出序列
     public boolean validateStackSequences(int[] pushed, int[] popped) {
-
-        return false;
+        if (pushed.length != popped.length) {
+            return false;
+        }
+        LinkedList<Integer> stack = new LinkedList<>();
+        int ptr = 0;
+        for (int val : pushed) {
+            stack.push(val);
+            while (!stack.isEmpty() && stack.peek() == popped[ptr]) {
+                stack.pop();
+                ptr++;
+            }
+        }
+        return stack.isEmpty();
     }
 }
