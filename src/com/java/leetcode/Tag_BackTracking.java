@@ -6,16 +6,15 @@ public class Tag_BackTracking {
 
     // id 46
     // 标准回溯
-    List<List<Integer>> result_permute = new ArrayList<>();
-
     public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> result_permute = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
         int[] visited = new int[nums.length];
-        backTrack_permute(nums, path, visited);
+        bt_permute(nums, path, visited, result_permute);
         return result_permute;
     }
 
-    private void backTrack_permute(int[] nums, List<Integer> path, int[] visited) {
+    private void bt_permute(int[] nums, List<Integer> path, int[] visited, List<List<Integer>> result_permute) {
         if (path.size() == nums.length) {
             result_permute.add(new ArrayList<>(path));
             return;
@@ -30,7 +29,7 @@ public class Tag_BackTracking {
             visited[i] = 1;
 
             // back track
-            backTrack_permute(nums, path, visited);
+            bt_permute(nums, path, visited, result_permute);
 
             // withdraw choice
             path.remove(path.size() - 1);
@@ -54,11 +53,11 @@ public class Tag_BackTracking {
 
     public List<String> letterCombinations(String digits) {
         if (digits == null) return null;
-        process(digits, 0);
+        bt_letterCombinations(digits, 0);
         return res;
     }
 
-    private void process(String digits, int index) {
+    private void bt_letterCombinations(String digits, int index) {
         if (index >= digits.length()) {
             res.add(tmp.toString());
             return;
@@ -66,39 +65,24 @@ public class Tag_BackTracking {
         String letter = digitsMap.get(digits.substring(index, index + 1));
         for (int i = 0; i < letter.length(); i++) {
             tmp.append(letter, i, i + 1);
-            process(digits, index + 1);
+            bt_letterCombinations(digits, index + 1);
             //去掉添加的字母，开始回溯
             tmp.replace(tmp.length() - 1, tmp.length(), "");
         }
     }
 
     // id 784
-    // 我太菜了
+    // easy
     public List<String> letterCasePermutation(String S) {
-        List<String> ret = new ArrayList<>();
-        backtrack784(S.toCharArray(), ret, new StringBuilder(), 0);
-        return ret;
+        return null;
     }
 
-    private void backtrack784(char[] s, List<String> ret, StringBuilder sb, int i) {
-        if (i == s.length) {
-            ret.add(sb.toString());
-            return;
-        }
-        char c = s[i];
-        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
-            sb.append(Character.toLowerCase(c));
-            backtrack784(s, ret, sb, i + 1);
-            sb.deleteCharAt(sb.length() - 1);
-
-            sb.append(Character.toUpperCase(c));
-            backtrack784(s, ret, sb, i + 1);
-            sb.deleteCharAt(sb.length() - 1);
-        } else {
-            sb.append(c);
-            backtrack784(s, ret, sb, i + 1);
-            sb.deleteCharAt(sb.length() - 1);
-        }
+    // id 401
+    // easy
+    // 二进制手表
+    public List<String> readBinaryWatch(int num) {
+        List<String> res = new ArrayList<>();
+        return null;
     }
 
 
