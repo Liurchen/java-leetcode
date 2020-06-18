@@ -215,34 +215,8 @@ public class Tag_Sort {
         }
     }
 
-    // 快排 分治
-    public void quicksort(int[] nums, int left, int right) {
-        int key, i, j;
+    // merge sort
+    public void mergeSort(int[] nums) {
 
-        if (left >= right) return;
-
-        key = nums[left];
-        i = left;
-        j = right;
-
-        while (i < j) {
-
-            while (nums[j] >= key && i < j) {
-                j--;
-            }
-
-            while (nums[i] <= key && i < j) {
-                i++;
-            }
-
-            swap(nums, i, j);
-        }
-
-        nums[left] = nums[i];
-        nums[i] = key;
-
-        quicksort(nums, left, j - 1);
-        quicksort(nums, j + 1, right);
     }
-
 }
