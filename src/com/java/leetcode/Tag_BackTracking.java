@@ -48,7 +48,7 @@ public class Tag_BackTracking {
         put("8", "tuv");
         put("9", "wxyz");
     }};
-    List<String> res = new ArrayList<String>();
+    List<String> res = new ArrayList<>();
     StringBuilder tmp = new StringBuilder();
 
     public List<String> letterCombinations(String digits) {
@@ -71,12 +71,6 @@ public class Tag_BackTracking {
         }
     }
 
-    // id 784
-    // easy
-    public List<String> letterCasePermutation(String S) {
-        return null;
-    }
-
     // id 401
     // easy
     // 二进制手表
@@ -85,5 +79,10 @@ public class Tag_BackTracking {
         return null;
     }
 
-
+    // id 78
+    // medium
+    // subset 子集
+    public List<List<Integer>> subsets(int[] nums) {
+        return null;
+    }
 }

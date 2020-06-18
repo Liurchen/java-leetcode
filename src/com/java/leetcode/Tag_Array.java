@@ -1,8 +1,6 @@
 package com.java.leetcode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Tag_Array {
 
@@ -706,6 +704,35 @@ public class Tag_Array {
     // dfs
     public int movingCount(int m, int n, int k) {
         return 0;
+    }
+
+    // id 1480
+    // 前缀和 裸题
+    public int[] runningSum(int[] nums) {
+        int len = nums.length;
+        for (int i = 1; i < len; i++) {
+            nums[i] = nums[i - 1] + nums[i];
+        }
+        return nums;
+    }
+
+    // id 1
+    // two sum
+    // idea
+    // 先建立一个元素与其索引的哈希表
+    // 然后查找每个元素的期望值是否在哈希表中
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            map.put(nums[i], i);
+        }
+        for (int i = 0; i < nums.length; i++) {
+            int expect = target - nums[i];
+            if (map.containsKey(expect) && map.get(expect) != i) {
+                return new int[]{i, map.get(expect)};
+            }
+        }
+        return null;
     }
 
 }

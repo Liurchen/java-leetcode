@@ -26,7 +26,6 @@ public class Main {
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
         LRUCache cache = new LRUCache(2);
 
-        backTracking.letterCasePermutation("1a2b3c");
     }
 }
 

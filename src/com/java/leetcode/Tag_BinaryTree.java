@@ -284,7 +284,7 @@ public class Tag_BinaryTree {
 
     // id 501
     int preVal = 0, curTimes = 0, maxTimes = 0;
-    ArrayList<Integer> list = new ArrayList<Integer>();
+    ArrayList<Integer> list = new ArrayList<>();
 
     public int[] findMode(TreeNode root) {
         traversal(root);
@@ -698,8 +698,23 @@ public class Tag_BinaryTree {
     }
 
     public Node treeToDoublyList(Node root) {
-        
+
         return null;
+    }
+
+    // id 100
+    // same tree
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) {
+            return true;
+        }
+        if (p == null) {
+            return false;
+        }
+        if (q == null) {
+            return false;
+        }
+        return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 
 }
