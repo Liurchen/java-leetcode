@@ -735,4 +735,27 @@ public class Tag_Array {
         return null;
     }
 
+    // id 34
+    // 在排序数组中查找元素的第一个和最后一个位置
+    public int[] searchRange(int[] nums, int target) {
+        Map<Integer, StringBuilder> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.get(nums[i]) == null) {
+                map.put(nums[i], new StringBuilder(i + "_"));
+            } else {
+                map.get(nums[i]).append(i).append("_");
+            }
+        }
+        if (map.get(target) != null) {
+            String str = map.get(target).toString();
+            int[] res = new int[2];
+            String[] arr = str.split("_");
+            res[0] = Integer.parseInt(arr[0]);
+            res[1] = Integer.parseInt(arr[arr.length - 1]);
+            return res;
+        } else {
+            return new int[]{-1, -1};
+        }
+    }
+
 }

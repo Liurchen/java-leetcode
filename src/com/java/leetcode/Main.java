@@ -26,6 +26,8 @@ public class Main {
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
         LRUCache cache = new LRUCache(2);
 
+        array.searchRange(new int[]{5, 7, 7, 8, 8, 10}, 8);
+
     }
 }
 
