@@ -1,20 +1,20 @@
 package com.java.leetcode;
 
-class MinStack {
+class Def_MinStack {
 
-    private ListNode head;
-    private ListNode tail;
-    private ListNode min;
+    private Def_ListNode head;
+    private Def_ListNode tail;
+    private Def_ListNode min;
 
     /**
      * initialize your data structure here.
      */
-    public MinStack() {
+    public Def_MinStack() {
 
     }
 
     public void push(int x) {
-        ListNode tmp = new ListNode(x);
+        Def_ListNode tmp = new Def_ListNode(x);
         if (head != null) {
             head.next = tmp;
         }

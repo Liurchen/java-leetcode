@@ -3,12 +3,12 @@ package com.java.leetcode;
 import java.util.Stack;
 
 // id 面试题 09
-public class CQueue {
+public class Def_CQueue {
 
     private final Stack<Integer> s1;
     private final Stack<Integer> s2;
 
-    public CQueue() {
+    public Def_CQueue() {
         s1 = new Stack<>();
         s2 = new Stack<>();
     }

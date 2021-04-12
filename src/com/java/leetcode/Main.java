@@ -21,7 +21,6 @@ public class Main {
         Tag_BinaryTree binaryTree = new Tag_BinaryTree();
         Tag_DFS dfs = new Tag_DFS();
         Tag_BFS bfs = new Tag_BFS();
-        Tag_Interview interview = new Tag_Interview();
         Tag_Sort sort = new Tag_Sort();
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
         LRUCache cache = new LRUCache(2);
