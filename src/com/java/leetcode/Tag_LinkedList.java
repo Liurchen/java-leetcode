@@ -298,4 +298,12 @@ public class Tag_LinkedList {
         }
     }
 
+    public Def_ListNode reverseList(Def_ListNode head) {
+        if (head == null || head.next == null) return head;
+        Def_ListNode newHead = reverseList(head.next);
+        newHead.next = head;
+        head.next = null;
+        return newHead;
+    }
+
 }
