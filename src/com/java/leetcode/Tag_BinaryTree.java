@@ -164,11 +164,11 @@ public class Tag_BinaryTree {
     }
 
     // id 面试题 55-1
-    public int maxDepth(Def_TreeNode root) {
-        if (root == null) {
+    public int maxDepth(Def_TreeNode node) {
+        if (node == null) {
             return 0;
         }
-        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+        return 1 + Math.max(maxDepth(node.left), maxDepth(node.right));
     }
 
     // id 面试题 26 树的子结构

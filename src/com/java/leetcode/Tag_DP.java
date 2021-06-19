@@ -314,4 +314,45 @@ public class Tag_DP {
         return dp[n];
     }
 
+    // id 5 最长回文子串
+    public String longestPalindrome(String s) {
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        int len = 1;
+        String ans = "";
+        for (int i = s.length() - 1; i >= 0; i--) {
+            for (int j = i; j < s.length(); j++) {
+                if (i == j) {
+                    dp[i][j] = true;
+                } else {
+                    boolean eql = s.charAt(i) == s.charAt(j);
+                    if (i == j - 1) {
+                        dp[i][j] = eql;
+                    } else {
+                        dp[i][j] = eql && dp[i + 1][j - 1];
+                    }
+                }
+                if (dp[i][j] && len <= j - i + 1) {
+                    len = j - i + 1;
+                    ans = s.substring(i, j + 1);
+                }
+            }
+        }
+        return ans;
+    }
+
+    public boolean isPalindrome(String s) {
+        int mid = s.length() / 2;
+        for (int i = 0; i < s.length(); i++) {
+            int last = s.length() - 1 - i;
+            if (i <= mid) {
+                if (s.charAt(i) != s.charAt(last)) {
+                    return false;
+                }
+            } else {
+                break;
+            }
+        }
+        return true;
+    }
+
 }

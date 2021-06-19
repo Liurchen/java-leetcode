@@ -217,11 +217,6 @@ public class Tag_LinkedList {
 
     // id 面试题 24
     // id 206
-    // 反转链表
-    public Def_ListNode reverseList(Def_ListNode head) {
-        return reverseListRecursion(head);
-    }
-
     // 不太懂递归的解法
     private Def_ListNode reverseListRecursion(Def_ListNode head) {
         if (head == null || head.next == null) return head;

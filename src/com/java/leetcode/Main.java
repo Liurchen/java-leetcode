@@ -24,6 +24,8 @@ public class Main {
         Tag_Sort sort = new Tag_Sort();
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
         LRUCache cache = new LRUCache(2);
+
+        System.out.println(dp.longestPalindrome("abc"));
     }
 }
 
