@@ -25,7 +25,8 @@ public class Main {
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
         LRUCache cache = new LRUCache(2);
 
-        System.out.println(dp.longestPalindrome("abc"));
+        contest.reversePrefix("hello", 'l');
+
     }
 }
 

@@ -440,6 +440,35 @@ public class LeetcodeWeeklyContest {
         }
         return res;
     }
+
+    /**
+     * id 5867. 反转单词前缀
+     * @param word 字符串
+     * @param ch 字符串中的字符
+     * @return String
+     */
+    public String reversePrefix(String word, char ch) {
+        if (word.indexOf(ch) == -1){
+            return word;
+        }
+        Deque<Character> stack = new LinkedList<>();
+        int idx = 0;
+        for (int i = 0; i < word.length(); i++) {
+            if (ch == word.charAt(i)) {
+                idx = i;
+                stack.push(word.charAt(i));
+                break;
+            } else {
+                stack.push(word.charAt(i));
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            sb.append(stack.pop());
+        }
+        sb.append(word.substring(idx + 1, word.length()));
+        return sb.toString();
+    }
 }
 
 
