@@ -2,7 +2,7 @@ package com.java.leetcode;
 
 import java.util.*;
 
-public class Tag_Stack {
+public class TagStack {
 
     public String simplifyPath(String path) {
         if (path.equals("/") || path.equals("")) {

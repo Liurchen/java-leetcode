@@ -1,6 +1,6 @@
 package com.java.leetcode;
 
-public class Tag_Math {
+public class TagMath {
 
     public int mySqrt(int x) {
         if (x <= 1) return x;

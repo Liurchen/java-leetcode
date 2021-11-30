@@ -2,7 +2,7 @@ package com.java.leetcode;
 
 import java.util.Arrays;
 
-public class Tag_Sort {
+public class TagSort {
 
     // idea
     // 插入排序，一般也被称为直接插入排序。对于少量元素的排序，它是一个有效的算法

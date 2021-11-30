@@ -1,6 +1,6 @@
 package com.java.leetcode;
 
-public class Tag_DFS {
+public class TagDFS {
 
     // id 1020
     public int numEnclaves(int[][] A) {

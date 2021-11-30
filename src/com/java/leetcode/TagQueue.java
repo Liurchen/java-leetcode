@@ -1,6 +1,6 @@
 package com.java.leetcode;
 
-public class Tag_Queue {
+public class TagQueue {
 
     public int getKthMagicNumber(int k) {
         if (k <= 0) {

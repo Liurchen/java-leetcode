@@ -2,7 +2,7 @@ package com.java.leetcode;
 
 import java.util.*;
 
-public class Tag_DP {
+public class TagDP {
 
     // id 70
     public int climbStairs(int n) {

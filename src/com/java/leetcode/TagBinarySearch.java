@@ -2,7 +2,7 @@ package com.java.leetcode;
 
 import java.util.Arrays;
 
-public class Tag_BinarySearch {
+public class TagBinarySearch {
 
     // id 287
     public int findDuplicate(int[] nums) {

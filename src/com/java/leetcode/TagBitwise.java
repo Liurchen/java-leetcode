@@ -3,7 +3,7 @@ package com.java.leetcode;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Tag_Bitwise {
+public class TagBitwise {
 
     public int countOne(int n) {
         int count = 0;

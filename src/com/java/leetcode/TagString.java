@@ -2,7 +2,7 @@ package com.java.leetcode;
 
 import java.util.*;
 
-public class Tag_String {
+public class TagString {
 
     public String replaceSpace(String s) {
         for (int i = 0; i < s.length(); i++) {

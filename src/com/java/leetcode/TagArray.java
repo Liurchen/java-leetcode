@@ -2,7 +2,7 @@ package com.java.leetcode;
 
 import java.util.*;
 
-public class Tag_Array {
+public class TagArray {
 
     public void rotate(int[][] matrix) {
         // 先转置

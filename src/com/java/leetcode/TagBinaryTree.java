@@ -2,7 +2,7 @@ package com.java.leetcode;
 
 import java.util.*;
 
-public class Tag_BinaryTree {
+public class TagBinaryTree {
 
     public void preOrder(TreeNode t) {
         if (t != null) {

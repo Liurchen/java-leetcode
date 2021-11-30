@@ -1,6 +1,6 @@
 package com.java.leetcode;
 
-public class Tag_Hashmap {
+public class TagHashmap {
     // id 560 和为 k 的子数组
     public int subarraySum(int[] nums, int k) {
         int ans = 0;

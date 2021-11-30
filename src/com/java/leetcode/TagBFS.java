@@ -2,7 +2,7 @@ package com.java.leetcode;
 
 import java.util.*;
 
-public class Tag_BFS {
+public class TagBFS {
 
     // id 690
     public int getImportance(List<Employee> employees, int id) {

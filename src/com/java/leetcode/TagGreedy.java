@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class Tag_Greedy {
+public class TagGreedy {
 
     public int leastInterval(char[] tasks, int n) {
         int totalTime = 0;

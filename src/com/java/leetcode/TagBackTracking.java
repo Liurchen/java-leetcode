@@ -2,7 +2,7 @@ package com.java.leetcode;
 
 import java.util.*;
 
-public class Tag_BackTracking {
+public class TagBackTracking {
 
     // id 46
     // 标准回溯
