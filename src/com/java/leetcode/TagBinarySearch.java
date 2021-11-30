@@ -59,4 +59,28 @@ public class TagBinarySearch {
         return cnt;
     }
 
+    // id 400
+    public int findNthDigit(int n) {
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = i + 1;
+        }
+
+        return 0;
+    }
+
+    public int getDigitLength(int n) {
+        int len = 0;
+        for (int i = 0; i < n; i++) {
+            int cur = i + 1;
+            int cnt = 0;
+            while (cur >= 1) {
+                cur /= 10;
+                cnt++;
+            }
+            len += cnt;
+        }
+        return len;
+    }
+
 }
