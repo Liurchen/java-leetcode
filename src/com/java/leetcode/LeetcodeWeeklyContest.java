@@ -469,6 +469,35 @@ public class LeetcodeWeeklyContest {
         sb.append(word.substring(idx + 1, word.length()));
         return sb.toString();
     }
+
+    // 第 254 场周赛
+    // id 5843 作为子字符串出现在单词中的字符串数目
+    public int numOfStrings(String[] patterns, String word) {
+        if (patterns.length == 0) return 0;
+        int num = 0;
+        for (String s:patterns) {
+            if (word.contains(s)) num++;
+        }
+        return num;
+    }
+
+    // id 5832 构造元素不等于两相邻元素平均值的数组
+    public int[] rearrangeArray(int[] nums) {
+        if (nums.length == 0) return nums;
+        Arrays.sort(nums);
+        int idx = 1;
+        while (idx < nums.length - 1) {
+            if (nums[idx] * 2 == nums[idx-1] + nums[idx+1]) {
+                int tmp = nums[idx+1];
+                nums[idx+1] = nums[idx];
+                nums[idx] = tmp;
+                idx = 1;
+            } else {
+                idx++;
+            }
+        }
+        return nums;
+    }
 }
 
 

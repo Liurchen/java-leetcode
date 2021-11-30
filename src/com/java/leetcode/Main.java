@@ -1,12 +1,8 @@
 package com.java.leetcode;
 
-import com.sun.source.tree.Tree;
-
-import java.util.*;
-
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         Tag_Array array = new Tag_Array();
         Tag_LinkedList linkedList = new Tag_LinkedList();
         Tag_Queue queue = new Tag_Queue();
@@ -24,8 +20,15 @@ public class Main {
         Tag_Sort sort = new Tag_Sort();
         LeetcodeWeeklyContest contest = new LeetcodeWeeklyContest();
         LRUCache cache = new LRUCache(2);
+        Tag_Hashmap hashmap = new Tag_Hashmap();
 
-        contest.reversePrefix("hello", 'l');
+        Class<?> c1 = Class.forName("com.java.leetcode.User");
+        Class<?> c2 = Class.forName("com.java.leetcode.User");
+        Class<?> c3 = Class.forName("com.java.leetcode.User");
+
+        System.out.println(c1.hashCode());
+        System.out.println(c2.hashCode());
+        System.out.println(c3.hashCode());
 
     }
 }

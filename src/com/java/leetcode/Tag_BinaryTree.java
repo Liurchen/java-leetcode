@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Tag_BinaryTree {
 
-    public void preOrder(Def_TreeNode t) {
+    public void preOrder(TreeNode t) {
         if (t != null) {
             System.out.println(t.val);
             preOrder(t.left);
@@ -16,13 +16,13 @@ public class Tag_BinaryTree {
     // 前序遍历 非递归
     // 使用栈
     // 右子树先入栈 因为栈先入后出
-    public List<Integer> preorderTraversal(Def_TreeNode root) {
+    public List<Integer> preorderTraversal(TreeNode root) {
         if (root == null) return new ArrayList<>();
         List<Integer> res = new ArrayList<>();
-        Deque<Def_TreeNode> stack = new ArrayDeque<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
         stack.offerFirst(root);
         while (!stack.isEmpty()) {
-            Def_TreeNode node = stack.pollFirst();
+            TreeNode node = stack.pollFirst();
             res.add(node.val);
             if (node.right != null) {
                 stack.offerFirst(node.right);
@@ -34,7 +34,7 @@ public class Tag_BinaryTree {
         return res;
     }
 
-    public void inOrder(Def_TreeNode t) {
+    public void inOrder(TreeNode t) {
         if (t != null) {
             inOrder(t.left);
             System.out.println(t.val);
@@ -45,9 +45,9 @@ public class Tag_BinaryTree {
     // id 94
     // 先一路找到最左的子节点
     // 然后 栈不空的时候 出栈 以此来访问右孩子
-    public List<Integer> inorderTraversal(Def_TreeNode root) {
-        Deque<Def_TreeNode> stack = new ArrayDeque<>();
-        Def_TreeNode p = root;
+    public List<Integer> inorderTraversal(TreeNode root) {
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode p = root;
         List<Integer> res = new ArrayList<>();
         while (p != null || !stack.isEmpty()) {
             while (p != null) {
@@ -63,7 +63,7 @@ public class Tag_BinaryTree {
         return res;
     }
 
-    public void postOrder(Def_TreeNode t) {
+    public void postOrder(TreeNode t) {
         if (t != null) {
             postOrder(t.left);
             postOrder(t.right);
@@ -72,16 +72,16 @@ public class Tag_BinaryTree {
     }
 
     // id 145
-    public List<Integer> postorderTraversal(Def_TreeNode root) {
+    public List<Integer> postorderTraversal(TreeNode root) {
         return new ArrayList<>();
     }
 
-    public void levelOrder(Def_TreeNode t) {
+    public void levelOrder(TreeNode t) {
         if (t != null) {
-            Queue<Def_TreeNode> queue = new LinkedList<>();
+            Queue<TreeNode> queue = new LinkedList<>();
             queue.offer(t);
             while (!queue.isEmpty()) {
-                Def_TreeNode head = queue.poll();
+                TreeNode head = queue.poll();
                 System.out.println(head.val);
                 if (head.left != null) {
                     queue.offer(head.left);
@@ -94,7 +94,7 @@ public class Tag_BinaryTree {
     }
 
     // id 617
-    public Def_TreeNode mergeTrees(Def_TreeNode t1, Def_TreeNode t2) {
+    public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
         if (t1 == null) {
             return t2;
         }
@@ -109,11 +109,11 @@ public class Tag_BinaryTree {
     }
 
     // id 114
-    public void flatten(Def_TreeNode root) {
+    public void flatten(TreeNode root) {
         if (root == null) return;
         flatten(root.left);
         flatten(root.right);
-        Def_TreeNode tmp = root.right;
+        TreeNode tmp = root.right;
         root.right = root.left;
         root.left = null;
         while (root.right != null) {
@@ -123,19 +123,19 @@ public class Tag_BinaryTree {
     }
 
     // id 102
-    public List<List<Integer>> levelOrder_102(Def_TreeNode root) {
+    public List<List<Integer>> levelOrder_102(TreeNode root) {
         if (root == null) {
             return new ArrayList<>();
         }
         List<List<Integer>> result = new ArrayList<>();
-        Queue<Def_TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
             // 每层的叶子数目 == queue.size()
             int size = queue.size();
             List<Integer> tmp = new ArrayList<>();
             while (size > 0) {
-                Def_TreeNode head = queue.poll();
+                TreeNode head = queue.poll();
                 assert head != null;
                 tmp.add(head.val);
                 if (head.left != null) {
@@ -153,18 +153,18 @@ public class Tag_BinaryTree {
 
     // id 235
     // 不会
-    public Def_TreeNode lowestCommonAncestor(Def_TreeNode root, Def_TreeNode p, Def_TreeNode q) {
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         return null;
     }
 
     // id 543
     // 不会
-    public int diameterOfBinaryTree(Def_TreeNode root) {
+    public int diameterOfBinaryTree(TreeNode root) {
         return 0;
     }
 
     // id 面试题 55-1
-    public int maxDepth(Def_TreeNode node) {
+    public int maxDepth(TreeNode node) {
         if (node == null) {
             return 0;
         }
@@ -172,14 +172,14 @@ public class Tag_BinaryTree {
     }
 
     // id 面试题 26 树的子结构
-    public boolean isSubStructure(Def_TreeNode A, Def_TreeNode B) {
+    public boolean isSubStructure(TreeNode A, TreeNode B) {
         if (A == null || B == null) {
             return false;
         }
         return helper26(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B);
     }
 
-    public boolean helper26(Def_TreeNode A, Def_TreeNode B) {
+    public boolean helper26(TreeNode A, TreeNode B) {
         if (B == null) {
             return true;
         }
@@ -190,15 +190,15 @@ public class Tag_BinaryTree {
     }
 
     // id 面试题 32-1
-    public int[] levelOrder_32_1(Def_TreeNode root) {
+    public int[] levelOrder_32_1(TreeNode root) {
         if (root == null) {
             return new int[]{};
         }
         List<Integer> res = new ArrayList<>();
-        Queue<Def_TreeNode> q = new LinkedList<>();
+        Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         while (!q.isEmpty()) {
-            Def_TreeNode head = q.poll();
+            TreeNode head = q.poll();
             res.add(head.val);
             if (head.left != null) {
                 q.offer(head.left);
@@ -215,12 +215,12 @@ public class Tag_BinaryTree {
     }
 
     // id 面试题 32-3
-    public List<List<Integer>> levelOrder_32_3(Def_TreeNode root) {
+    public List<List<Integer>> levelOrder_32_3(TreeNode root) {
         if (root == null) {
             return new ArrayList<>();
         }
         List<List<Integer>> result = new ArrayList<>();
-        Queue<Def_TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
         int i = 0;
         while (!queue.isEmpty()) {
@@ -229,7 +229,7 @@ public class Tag_BinaryTree {
             List<Integer> tmp = new ArrayList<>();
             i++;
             while (size > 0) {
-                Def_TreeNode head = queue.poll();
+                TreeNode head = queue.poll();
                 assert head != null;
                 tmp.add(head.val);
                 if (head.left != null) {
@@ -249,19 +249,19 @@ public class Tag_BinaryTree {
     }
 
     // id 108
-    public Def_TreeNode sortedArrayToBST(int[] nums) {
+    public TreeNode sortedArrayToBST(int[] nums) {
         // idea 左右区间分治策略 递归
         // 求中点不要用 int mid = (start + end)/2，有溢出风险，稳妥的方法是 int mid = start + (end-start)/2
         // 如果你把除2改成右移1位，会和面试官更搭哦
         return nums == null ? null : dfs_108(nums, 0, nums.length - 1);
     }
 
-    private Def_TreeNode dfs_108(int[] nums, int start, int end) {
+    private TreeNode dfs_108(int[] nums, int start, int end) {
         if (start > end) {
             return null;
         }
         int mid = ((end - start) >> 1) + start;
-        Def_TreeNode root = new Def_TreeNode(nums[mid]);
+        TreeNode root = new TreeNode(nums[mid]);
         root.left = dfs_108(nums, start, mid - 1);
         root.right = dfs_108(nums, mid + 1, end);
         return root;
@@ -270,7 +270,7 @@ public class Tag_BinaryTree {
     // id 404
     private int sum = 0;
 
-    public void sumOfLeftLeaves(Def_TreeNode root) {
+    public void sumOfLeftLeaves(TreeNode root) {
         if (root != null) {
             // 怎么样是左叶子哦~
             if (root.left != null && root.left.left == null && root.left.right == null) {
@@ -286,7 +286,7 @@ public class Tag_BinaryTree {
     int preVal = 0, curTimes = 0, maxTimes = 0;
     ArrayList<Integer> list = new ArrayList<>();
 
-    public int[] findMode(Def_TreeNode root) {
+    public int[] findMode(TreeNode root) {
         traversal(root);
         //list转换为int[]
         int size = list.size();
@@ -298,7 +298,7 @@ public class Tag_BinaryTree {
     }
 
     //二叉搜索树中序遍历是递增顺序
-    public void traversal(Def_TreeNode root) {
+    public void traversal(TreeNode root) {
         if (root != null) {
             traversal(root.left);
             //判断当前值与上一个值的关系, 更新 curTimes 和 preVal
@@ -321,7 +321,7 @@ public class Tag_BinaryTree {
     }
 
     // id 701
-    public Def_TreeNode insertIntoBST(Def_TreeNode root, int val) {
+    public TreeNode insertIntoBST(TreeNode root, int val) {
         if (root != null) {
             if (root.val < val) {
                 root.right = insertIntoBST(root.right, val);
@@ -331,7 +331,7 @@ public class Tag_BinaryTree {
                 return root;
             }
         } else {
-            return new Def_TreeNode(val);
+            return new TreeNode(val);
         }
         return root;
     }
@@ -339,15 +339,15 @@ public class Tag_BinaryTree {
     // id 105
     // id 面试题 07
     // 前序+中序
-    public Def_TreeNode buildTree(int[] preorder, int[] inorder) {
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
         if (preorder.length == 0 || inorder.length == 0) return null;
-        if (preorder.length == 1) return new Def_TreeNode(preorder[0]);
+        if (preorder.length == 1) return new TreeNode(preorder[0]);
         return buildTreeCore(preorder, inorder, 0, preorder.length - 1, 0, inorder.length - 1);
     }
 
-    private Def_TreeNode buildTreeCore(int[] preorder, int[] inorder, int preStart, int preEnd, int inStart, int inEnd) {
+    private TreeNode buildTreeCore(int[] preorder, int[] inorder, int preStart, int preEnd, int inStart, int inEnd) {
         if (preStart > preEnd) return null;
-        Def_TreeNode root = new Def_TreeNode(preorder[preStart]);
+        TreeNode root = new TreeNode(preorder[preStart]);
         int rootInPos = inStart;
         while (rootInPos < inEnd) {
             if (inorder[rootInPos] == root.val) {
@@ -372,13 +372,13 @@ public class Tag_BinaryTree {
     }
 
     // id 面试题 27
-    public Def_TreeNode mirrorTree(Def_TreeNode root) {
+    public TreeNode mirrorTree(TreeNode root) {
         if (root == null) return null;
         // root.left = 翻转好了的左子树
         root.left = mirrorTree(root.left);
         root.right = mirrorTree(root.right);
         // 最后在根节点上翻转
-        Def_TreeNode tmp = root.left;
+        TreeNode tmp = root.left;
         root.left = root.right;
         root.right = tmp;
         return root;
@@ -386,7 +386,7 @@ public class Tag_BinaryTree {
 
     // id 938
     // 递归真香
-    public int rangeSumBST(Def_TreeNode root, int L, int R) {
+    public int rangeSumBST(TreeNode root, int L, int R) {
         if (root == null) return 0;
         if (root.val >= L && root.val <= R) {
             return root.val + rangeSumBST(root.left, L, R) + rangeSumBST(root.right, L, R);
@@ -398,7 +398,7 @@ public class Tag_BinaryTree {
     }
 
     // id 700
-    public Def_TreeNode searchBST(Def_TreeNode root, int val) {
+    public TreeNode searchBST(TreeNode root, int val) {
         if (root == null) return null;
         if (root.val == val) {
             return root;
@@ -410,16 +410,16 @@ public class Tag_BinaryTree {
     }
 
     // id 590
-    public List<Integer> postorder(Def_Node root) {
+    public List<Integer> postorder(Node root) {
         List<Integer> res_pre = new ArrayList<>();
         if (root == null)
             return res_pre;
-        Stack<Def_Node> s = new Stack<>();
+        Stack<Node> s = new Stack<>();
         s.push(root);
         while (!s.isEmpty()) {
-            Def_Node n = s.pop();
+            Node n = s.pop();
             res_pre.add(n.val);
-            for (Def_Node node : n.children)
+            for (Node node : n.children)
                 s.push(node);
         }
         Collections.reverse(res_pre);
@@ -428,13 +428,13 @@ public class Tag_BinaryTree {
 
     // id 面试题 54
     // 1,二叉搜索树中序遍历就是一个有序的数组
-    public int kthLargest(Def_TreeNode root, int k) {
+    public int kthLargest(TreeNode root, int k) {
         List<Integer> res = new ArrayList<>();
         inorder(root, res);
         return res.get(res.size() - k);
     }
 
-    private void inorder(Def_TreeNode root, List<Integer> res) {
+    private void inorder(TreeNode root, List<Integer> res) {
         if (root != null) {
             inorder(root.left, res);
             res.add(root.val);
@@ -444,13 +444,13 @@ public class Tag_BinaryTree {
 
     // id 面试题 28 对称二叉树
     // id 101
-    public boolean isSymmetric(Def_TreeNode root) {
+    public boolean isSymmetric(TreeNode root) {
         if (root == null)
             return true;
         return isSymmetricHelper(root.left, root.right);
     }
 
-    public boolean isSymmetricHelper(Def_TreeNode root1, Def_TreeNode root2) {
+    public boolean isSymmetricHelper(TreeNode root1, TreeNode root2) {
         if (root1 == null && root2 == null)
             return true;
         if (root1 == null || root2 == null)
@@ -467,15 +467,15 @@ public class Tag_BinaryTree {
     // 4，前序遍历 构造二叉搜索树
 
     // 前+中
-    public Def_TreeNode buildTreeFromPreIn(int[] preorder, int[] inorder) {
+    public TreeNode buildTreeFromPreIn(int[] preorder, int[] inorder) {
         if (preorder.length == 0 || inorder.length == 0) return null;
-        if (preorder.length == 1 && inorder.length == 1) return new Def_TreeNode(preorder[0]);
+        if (preorder.length == 1 && inorder.length == 1) return new TreeNode(preorder[0]);
         return buildTreeFromPreInCore(preorder, 0, preorder.length - 1, inorder, 0, inorder.length - 1);
     }
 
-    private Def_TreeNode buildTreeFromPreInCore(int[] preorder, int preS, int preE, int[] inorder, int inS, int inE) {
+    private TreeNode buildTreeFromPreInCore(int[] preorder, int preS, int preE, int[] inorder, int inS, int inE) {
         if (preS > preE) return null;
-        Def_TreeNode root = new Def_TreeNode(preorder[preS]);
+        TreeNode root = new TreeNode(preorder[preS]);
         // 找到根节点在中序中的位置，以此来划分左右子树
         int pos = inS;
         while (pos < inE) {
@@ -503,9 +503,9 @@ public class Tag_BinaryTree {
     }
 
     // 前+后
-    public Def_TreeNode buildTreeFromPrePost(int[] pre, int[] post) {
+    public TreeNode buildTreeFromPrePost(int[] pre, int[] post) {
         if (pre.length == 0 || post.length == 0) return null;
-        if (pre.length == 1 && post.length == 1) return new Def_TreeNode(pre[0]);
+        if (pre.length == 1 && post.length == 1) return new TreeNode(pre[0]);
         int[] reversePost = new int[post.length];
         for (int i = 0; i < reversePost.length; i++) {
             reversePost[i] = post[post.length - i - 1];
@@ -513,9 +513,9 @@ public class Tag_BinaryTree {
         return buildTreeFromPrePostCore(pre, 0, pre.length - 1, reversePost, 0, reversePost.length - 1);
     }
 
-    private Def_TreeNode buildTreeFromPrePostCore(int[] pre, int preS, int preE, int[] post, int postS, int postE) {
+    private TreeNode buildTreeFromPrePostCore(int[] pre, int preS, int preE, int[] post, int postS, int postE) {
         if (preS > preE || postS > postE) return null;
-        Def_TreeNode root = new Def_TreeNode(pre[preS]);
+        TreeNode root = new TreeNode(pre[preS]);
         if (preS == preE) return root;
         // 找到右子树的起点
         int pos = preS;
@@ -544,15 +544,15 @@ public class Tag_BinaryTree {
     }
 
     // 中+后
-    public Def_TreeNode buildTreeFromInPost(int[] inorder, int[] postorder) {
+    public TreeNode buildTreeFromInPost(int[] inorder, int[] postorder) {
         if (inorder.length == 0 || postorder.length == 0) return null;
-        if (inorder.length == 1 || postorder.length == 1) return new Def_TreeNode(inorder[0]);
+        if (inorder.length == 1 || postorder.length == 1) return new TreeNode(inorder[0]);
         return buildTreeFromInPostCore(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1);
     }
 
-    private Def_TreeNode buildTreeFromInPostCore(int[] inorder, int inS, int inE, int[] postorder, int postS, int postE) {
+    private TreeNode buildTreeFromInPostCore(int[] inorder, int inS, int inE, int[] postorder, int postS, int postE) {
         if (inS > inE || postS > postE) return null;
-        Def_TreeNode root = new Def_TreeNode(postorder[postE]);
+        TreeNode root = new TreeNode(postorder[postE]);
         if (postE == postS) return root;
 
         // 寻找根节点在中序遍历中的位置，以此来划分左右子树
@@ -589,13 +589,13 @@ public class Tag_BinaryTree {
     // 1 判断在叶子节点 是否为0了
     private boolean ans = false;
 
-    public boolean hasPathSum(Def_TreeNode root, int sum) {
+    public boolean hasPathSum(TreeNode root, int sum) {
         if (root == null) return false;
         hasPathSum_dfs(root, sum);
         return ans;
     }
 
-    private void hasPathSum_dfs(Def_TreeNode root, int sum) {
+    private void hasPathSum_dfs(TreeNode root, int sum) {
         if (root == null) return;
         if (root.left == null && root.right == null) {
             if (sum == root.val) {
@@ -613,14 +613,14 @@ public class Tag_BinaryTree {
     // helper函数dfs
     private int cnt = 0;
 
-    public void pathSum(Def_TreeNode root, int sum) {
+    public void pathSum(TreeNode root, int sum) {
         if (root == null) return;
         pathSum_dfs(root, sum);
         pathSum(root.left, sum);
         pathSum(root.right, sum);
     }
 
-    private void pathSum_dfs(Def_TreeNode root, int sum) {
+    private void pathSum_dfs(TreeNode root, int sum) {
         if (root == null) return;
         // 不要判断是否叶子节点
         // if (root.left == null && root.right == null)
@@ -636,7 +636,7 @@ public class Tag_BinaryTree {
     // 到叶子节点
     // 外层从根节点开始
     // 内层dfs
-    public List<List<Integer>> pathSum_113(Def_TreeNode root, int sum) {
+    public List<List<Integer>> pathSum_113(TreeNode root, int sum) {
         if (root == null) return new ArrayList<>();
         List<List<Integer>> res = new ArrayList<>();
         List<Integer> tmp = new ArrayList<>();
@@ -644,7 +644,7 @@ public class Tag_BinaryTree {
         return res;
     }
 
-    private void pathSum_113_dfs(Def_TreeNode root, int sum, List<List<Integer>> res, List<Integer> tmp) {
+    private void pathSum_113_dfs(TreeNode root, int sum, List<List<Integer>> res, List<Integer> tmp) {
         if (root == null) return;
         tmp.add(root.val);
         if (root.left == null && root.right == null) {
@@ -660,18 +660,18 @@ public class Tag_BinaryTree {
     // id 面试题 04 05
     // 检查是否为合法二叉搜索树
     // 考虑递归
-    public boolean isValidBST(Def_TreeNode root) {
+    public boolean isValidBST(TreeNode root) {
         return isValidBST(root, Long.MAX_VALUE, Long.MIN_VALUE);
     }
 
-    private boolean isValidBST(Def_TreeNode node, long max, long min) {
+    private boolean isValidBST(TreeNode node, long max, long min) {
         if (node == null) return true;
         return node.val < max && node.val > min && isValidBST(node.left, node.val, min) && isValidBST(node.right, max, node.val);
     }
 
     // id 111
     // 二叉树的最小深度
-    public int minDepth(Def_TreeNode root) {
+    public int minDepth(TreeNode root) {
         Map<Integer, Integer> map = new HashMap<>();
         if (root == null) return 0;
         if (root.left == null && root.right != null) return 1 + minDepth(root.right);
@@ -682,7 +682,7 @@ public class Tag_BinaryTree {
     // id 110
     // id 面试题 55-II
     // 判断是否平衡二叉树 任意节点左右子树高度差不超过1
-    public boolean isBalanced(Def_TreeNode root) {
+    public boolean isBalanced(TreeNode root) {
         if (root == null) {
             return true;
         } else if (Math.abs(getHeight(root.left) - getHeight(root.right)) <= 1) {
@@ -692,19 +692,19 @@ public class Tag_BinaryTree {
         }
     }
 
-    private int getHeight(Def_TreeNode root) {
+    private int getHeight(TreeNode root) {
         if (root == null) return 0;
         return Math.max(getHeight(root.left), getHeight(root.right)) + 1;
     }
 
-    public Def_Node treeToDoublyList(Def_Node root) {
+    public Node treeToDoublyList(Node root) {
 
         return null;
     }
 
     // id 100
     // same tree
-    public boolean isSameTree(Def_TreeNode p, Def_TreeNode q) {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
         if (p == null && q == null) {
             return true;
         }

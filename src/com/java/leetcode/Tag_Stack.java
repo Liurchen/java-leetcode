@@ -116,7 +116,7 @@ public class Tag_Stack {
     }
 
     // id 445
-    public Def_ListNode addTwoNumbers(Def_ListNode l1, Def_ListNode l2) {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         Stack<Integer> s1 = new Stack<>();
         Stack<Integer> s2 = new Stack<>();
         while (l1 != null) {
@@ -128,7 +128,7 @@ public class Tag_Stack {
             l2 = l2.next;
         }
         int t = 0; //进位变量
-        Def_ListNode res = null;
+        ListNode res = null;
         while (!s1.isEmpty() || !s2.isEmpty() || t > 0) {
             if (!s1.isEmpty()) {
                 t += s1.pop();
@@ -136,7 +136,7 @@ public class Tag_Stack {
             if (!s2.isEmpty()) {
                 t += s2.pop();
             }
-            Def_ListNode cur = new Def_ListNode(t % 10);
+            ListNode cur = new ListNode(t % 10);
             cur.next = res; //头插法
             res = cur;
             t /= 10;

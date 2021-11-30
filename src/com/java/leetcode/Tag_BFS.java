@@ -24,14 +24,14 @@ public class Tag_BFS {
     }
 
     // id 559
-    public int maxDepth(Def_Node root) {
+    public int maxDepth(Node root) {
         int max = 0;
         if (root == null) {
             return 0;
         } else if (root.children.size() == 0) {
             return 1;
         } else {
-            for (Def_Node nd : root.children) {
+            for (Node nd : root.children) {
                 max = Math.max(max, maxDepth(nd) + 1);
             }
         }
@@ -39,9 +39,9 @@ public class Tag_BFS {
     }
 
     // id 993
-    public boolean isCousins(Def_TreeNode root, int x, int y) {
+    public boolean isCousins(TreeNode root, int x, int y) {
         if (root.val == x || root.val == y) return false;
-        Queue<Def_TreeNode> q = new LinkedList<>();
+        Queue<TreeNode> q = new LinkedList<>();
         int[] hash = new int[101];  // 用来存储父节点的值，题目说明数据范围1-100 & 没有重复数字
         q.offer(root);
 
@@ -49,7 +49,7 @@ public class Tag_BFS {
         while (!q.isEmpty()) {
             int size = q.size();
             for (int i = 0; i < size; i++) {
-                Def_TreeNode temp = q.poll();
+                TreeNode temp = q.poll();
                 assert temp != null;
                 if (temp.left != null) {
                     q.offer(temp.left);
@@ -111,20 +111,20 @@ public class Tag_BFS {
     }
 
     // id 429
-    public List<List<Integer>> levelOrder(Def_Node root) {
+    public List<List<Integer>> levelOrder(Node root) {
         if (root == null) return new ArrayList<>();
         List<List<Integer>> res = new ArrayList<>();
-        Queue<Def_Node> q = new LinkedList<>();
+        Queue<Node> q = new LinkedList<>();
         q.offer(root);
         while (!q.isEmpty()) {
             int size = q.size();
             List<Integer> tmp = new ArrayList<>();
             while (size > 0) {
-                Def_Node nd = q.poll();
+                Node nd = q.poll();
                 assert nd != null;
                 tmp.add(nd.val);
                 size--;
-                for (Def_Node node : nd.children) {
+                for (Node node : nd.children) {
                     q.offer(node);
                 }
             }
@@ -134,16 +134,16 @@ public class Tag_BFS {
     }
 
     // id 513
-    public int findBottomLeftValue(Def_TreeNode root) {
+    public int findBottomLeftValue(TreeNode root) {
         if (root == null) return 0;
-        Queue<Def_TreeNode> q = new LinkedList<>();
+        Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         List<List<Integer>> res = new ArrayList<>();
         while (!q.isEmpty()) {
             int size = q.size();
             List<Integer> level = new ArrayList<>();
             while (size > 0) {
-                Def_TreeNode tmp = q.poll();
+                TreeNode tmp = q.poll();
                 size--;
                 assert tmp != null;
                 level.add(tmp.val);
@@ -160,16 +160,16 @@ public class Tag_BFS {
     }
 
     // id 199
-    public List<Integer> rightSideView(Def_TreeNode root) {
+    public List<Integer> rightSideView(TreeNode root) {
         if (root == null) return new ArrayList<>();
-        Queue<Def_TreeNode> q = new LinkedList<>();
+        Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         List<List<Integer>> res = new ArrayList<>();
         while (!q.isEmpty()) {
             int size = q.size();
             List<Integer> level = new ArrayList<>();
             while (size > 0) {
-                Def_TreeNode tmp = q.poll();
+                TreeNode tmp = q.poll();
                 size--;
                 assert tmp != null;
                 level.add(tmp.val);
@@ -190,16 +190,16 @@ public class Tag_BFS {
     }
 
     // id 515
-    public List<Integer> largestValues(Def_TreeNode root) {
+    public List<Integer> largestValues(TreeNode root) {
         if (root == null) return new ArrayList<>();
-        Queue<Def_TreeNode> q = new LinkedList<>();
+        Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         List<List<Integer>> res = new ArrayList<>();
         while (!q.isEmpty()) {
             int size = q.size();
             List<Integer> level = new ArrayList<>();
             while (size > 0) {
-                Def_TreeNode tmp = q.poll();
+                TreeNode tmp = q.poll();
                 size--;
                 assert tmp != null;
                 level.add(tmp.val);
