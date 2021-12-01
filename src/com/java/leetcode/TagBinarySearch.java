@@ -61,18 +61,46 @@ public class TagBinarySearch {
 
     // id 400
     public int findNthDigit(int n) {
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = i + 1;
+        int left = 1;
+        int oldLen = 0;
+        while (left < n) {
+            int mid = (left + n) / 2;
+            int len = getDigitLength(left, mid);
+            oldLen += len;
+            if (oldLen < n) {
+                left = mid + 1;
+            } else {
+                oldLen -= len;
+                break;
+            }
+        }
+        for (int i = left; i < n + 1; i++) {
+            int len = getDigitLength(i, i);
+            int total = len;
+            while (len > 0) {
+                len--;
+                oldLen++;
+                if (oldLen == n) {
+                    int d = total - len;
+                    String s = String.valueOf(i);
+                    char res = s.charAt(d-1);
+                    return Character.getNumericValue(res);
+                }
+            }
         }
 
         return 0;
     }
 
-    public int getDigitLength(int n) {
+    public int getDigitLength(int start, int end) {
+        if (start > end) {
+            int tmp = start;
+            start = end;
+            end = tmp;
+        }
         int len = 0;
-        for (int i = 0; i < n; i++) {
-            int cur = i + 1;
+        for (int i = start; i < end + 1; i++) {
+            int cur = i;
             int cnt = 0;
             while (cur >= 1) {
                 cur /= 10;
@@ -82,5 +110,4 @@ public class TagBinarySearch {
         }
         return len;
     }
-
 }

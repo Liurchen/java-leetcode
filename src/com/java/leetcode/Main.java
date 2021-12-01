@@ -22,6 +22,7 @@ public class Main {
         LRUCache cache = new LRUCache(2);
         TagHashmap hashmap = new TagHashmap();
 
+        System.out.println(binarySearch.findNthDigit(1000000000));
 
     }
 }
